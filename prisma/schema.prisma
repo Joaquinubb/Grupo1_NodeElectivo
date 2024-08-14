@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+enum PosicionJugador {
+  PORTERO
+  DEFENSA
+  MEDIOCAMPISTA
+  DELANTERO
+}
+
+model Arbitro {
+  id_arbitro       Int      @id @default(autoincrement())
+  nombre_arbitro   String
+  apellido_arbitro String
+  fechaNac_arbitro DateTime
+}
+
+model Club {
+  id_club             Int         @id @default(autoincrement())
+  nombre_club         String
+  ciudad_club         String
+  estadio_club        String
+  escudo_club         String
+  jugadores_club      Jugador[] // Relación con jugadores
+  entrenador_club     Entrenador?
+  fechaFund_club      DateTime
+  titulosPrimera_club Int
+  entrenadorId        Int
+}
+
+model Entrenador {
+  id_entrenador           Int      @id @default(autoincrement())
+  nombre_entrenador       String
+  apellido_entrenador     String
+  nacionalidad_entrenador String
+  fechaNac_entrenador     DateTime
+  club_entrenador         Club     @relation(fields: [clubId], references: [id_club])
+  clubId                  Int      @unique
+}
+
+model Jugador {
+  id_jugador           Int             @id @default(autoincrement())
+  nombre_jugador       String
+  apellido_jugador     String
+  nacionalidad_jugador String
+  fechaNac_jugador     DateTime
+  precio_jugador       Float
+  posicion_jugador     PosicionJugador
+  estatura_jugador     Float
+  club_jugador         Club            @relation(fields: [clubId], references: [id_club])
+  clubId               Int
+}
