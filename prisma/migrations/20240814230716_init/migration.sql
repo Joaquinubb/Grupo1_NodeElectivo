@@ -20,7 +20,6 @@ CREATE TABLE "Club" (
     "escudo_club" TEXT NOT NULL,
     "fechaFund_club" TIMESTAMP(3) NOT NULL,
     "titulosPrimera_club" INTEGER NOT NULL,
-    "entrenadorId" INTEGER NOT NULL,
 
     CONSTRAINT "Club_pkey" PRIMARY KEY ("id_club")
 );
