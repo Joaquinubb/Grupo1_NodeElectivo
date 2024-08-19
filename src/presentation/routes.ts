@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ArbitroRoutes } from "./arbitro/arbitro.routes";
+import { JugadorRoutes } from "./jugador/jugador.routes";
 
 export class AppRoutes {
   static get routes(): Router {
@@ -10,7 +11,7 @@ export class AppRoutes {
     }); //Solo para probar que el servidor esta corriendo
 
     router.use("/api/arbitros", ArbitroRoutes.routes);
-
+    router.use("/api/jugadores", JugadorRoutes.routes);
     return router;
   }
 }
