@@ -1,4 +1,5 @@
 import { prisma } from "./src/data/postgres";
+import { PosicionJugador } from "@prisma/client";
 
 async function main() {
   const arbitros = [
@@ -346,6 +347,19 @@ async function main() {
     },
   ];
 
+  const jugadores = [
+    {
+      nombre_jugador: "Brayan",
+      apellido_jugador: "Cortés",
+      nacionalidad_jugador: "Chile",
+      fechaNac_jugador: new Date("1995-11-03T00:00:00Z"),
+      precio_jugador: 0,
+      posicion_jugador: PosicionJugador.PORTERO,
+      estatura_jugador: 186,
+      clubId: 4,
+    },
+  ];
+
   for (const arbitro of arbitros) {
     await prisma.arbitro.create({
       data: arbitro,
@@ -361,6 +375,12 @@ async function main() {
   for (const entrenador of entrenadores) {
     await prisma.entrenador.create({
       data: entrenador,
+    });
+  }
+
+  for (const jugador of jugadores) {
+    await prisma.jugador.create({
+      data: jugador,
     });
   }
 
