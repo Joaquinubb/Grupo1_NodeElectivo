@@ -8,6 +8,7 @@ export class JugadorService {
     try {
       const jugadores = await prisma.jugador.findMany({
         select: {
+          id_jugador: true,
           nombre_jugador: true,
           apellido_jugador: true,
         },
@@ -40,8 +41,8 @@ export class JugadorService {
   async getJugadoresByClub(id: number) {
     try {
       const club = await prisma.club.findUnique({
-        select:{
-            jugadores_club: true,
+        select: {
+          jugadores_club: true,
         },
         where: {
           id_club: id,
@@ -57,8 +58,4 @@ export class JugadorService {
       throw CustomError.internalServer(`${error}`);
     }
   }
-
-
 }
-
-

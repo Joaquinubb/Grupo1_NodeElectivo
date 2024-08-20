@@ -10,9 +10,10 @@ export class JugadorRoutes {
 
     const jugadorController = new JugadorController(jugadorService);
 
-    router.get("/", jugadorController.getJugador);
+    router.get("/", jugadorController.getJugadores);
     router.get("/club/:id", jugadorController.getJugadoresByClub);
     router.get("/:id", jugadorController.getJugadoresById);
+
     return router;
   }
 }

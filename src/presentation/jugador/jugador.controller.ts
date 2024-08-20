@@ -14,7 +14,7 @@ export class JugadorController {
     return res.status(500).json({ error: "Internal server error" });
   };
 
-  getJugador = async (req: Request, res: Response) => {
+  getJugadores = async (req: Request, res: Response) => {
     this.jugadorService
       .getJugadores()
       .then((jugadores) => res.status(200).json(jugadores))
@@ -32,7 +32,7 @@ export class JugadorController {
 
   getJugadoresByClub = async (req: Request, res: Response) => {
     const clubid = Number(req.params.id);
-  
+
     this.jugadorService
       .getJugadoresByClub(clubid)
       .then((jugadores) => res.status(200).json(jugadores))
