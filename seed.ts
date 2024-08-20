@@ -83,6 +83,156 @@ async function main() {
       apellido_arbitro: "Carvajal",
       fechaNac_arbitro: new Date("1986-06-01T00:00:00Z"),
     },
+    {
+      nombre_arbitro: "Nicolás",
+      apellido_arbitro: "Millas",
+      fechaNac_arbitro: new Date("1990-01-30T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Miguel",
+      apellido_arbitro: "Araos",
+      fechaNac_arbitro: new Date("1988-02-16T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Víctor",
+      apellido_arbitro: "Abarzúa",
+      fechaNac_arbitro: new Date("1987-06-10T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Alan",
+      apellido_arbitro: "Sandoval",
+      fechaNac_arbitro: new Date("1986-05-04T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Miguel",
+      apellido_arbitro: "Rocha",
+      fechaNac_arbitro: new Date("1980-06-24T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Juan",
+      apellido_arbitro: "Serrano",
+      fechaNac_arbitro: new Date("1982-09-27T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "José",
+      apellido_arbitro: "Retamal",
+      fechaNac_arbitro: new Date("1981-06-25T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Claudio",
+      apellido_arbitro: "Urrutia",
+      fechaNac_arbitro: new Date("1981-12-11T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Alejandro",
+      apellido_arbitro: "Molina",
+      fechaNac_arbitro: new Date("1987-10-30T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Edson",
+      apellido_arbitro: "Cisternas",
+      fechaNac_arbitro: new Date("1983-02-11T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Gabriel",
+      apellido_arbitro: "Ureta",
+      fechaNac_arbitro: new Date("1988-05-31T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Julio",
+      apellido_arbitro: "Abdala",
+      fechaNac_arbitro: new Date("1984-10-24T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Eric",
+      apellido_arbitro: "Pizarro",
+      fechaNac_arbitro: new Date("1988-04-13T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Carlos",
+      apellido_arbitro: "Poblete Barrales",
+      fechaNac_arbitro: new Date("1980-09-24T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Víctor",
+      apellido_arbitro: "Pasmiño",
+      fechaNac_arbitro: new Date("1984-08-13T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Manuel",
+      apellido_arbitro: "Marín",
+      fechaNac_arbitro: new Date("1984-02-01T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Fabián",
+      apellido_arbitro: "Aedo",
+      fechaNac_arbitro: new Date("1992-05-19T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Carlos",
+      apellido_arbitro: "Poblete Roa",
+      fechaNac_arbitro: new Date("1987-06-14T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Carlos",
+      apellido_arbitro: "Venegas",
+      fechaNac_arbitro: new Date("1984-03-18T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Luis",
+      apellido_arbitro: "Jarpa",
+      fechaNac_arbitro: new Date("1985-08-24T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Manuel",
+      apellido_arbitro: "Requena",
+      fechaNac_arbitro: new Date("1979-03-04T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Mario",
+      apellido_arbitro: "Lagos",
+      fechaNac_arbitro: new Date("1984-06-13T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Sebastián",
+      apellido_arbitro: "Pérez",
+      fechaNac_arbitro: new Date("1986-09-14T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Víctor",
+      apellido_arbitro: "Lara",
+      fechaNac_arbitro: new Date("1982-12-10T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Wladimir",
+      apellido_arbitro: "Muñoz",
+      fechaNac_arbitro: new Date("1991-04-04T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "María Belén",
+      apellido_arbitro: "Carvajal",
+      fechaNac_arbitro: new Date("1983-09-13T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Leslie",
+      apellido_arbitro: "Vásquez",
+      fechaNac_arbitro: new Date("1987-01-19T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Loreto",
+      apellido_arbitro: "Toloza",
+      fechaNac_arbitro: new Date("1984-01-06T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Cindy",
+      apellido_arbitro: "Nahuelcoy",
+      fechaNac_arbitro: new Date("1988-05-02T00:00:00Z"),
+    },
+    {
+      nombre_arbitro: "Marcia",
+      apellido_arbitro: "Castillo",
+      fechaNac_arbitro: new Date("1986-08-30T00:00:00Z"),
+    },
   ];
 
   const clubes = [
