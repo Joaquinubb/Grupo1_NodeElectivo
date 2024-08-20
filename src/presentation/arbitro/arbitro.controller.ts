@@ -29,4 +29,22 @@ export class ArbitroController {
       .then((arbitro) => res.status(200).json(arbitro))
       .catch((error) => this.handleError(error, res));
   };
+
+  deleteArbitroById = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    this.arbitroService
+      .deleteArbitroById(id)
+      .then((arbitro) => res.status(200).json(arbitro))
+      .catch((error) => this.handleError(error, res));
+  };
+
+  createArbitro = async (req: Request, res: Response) => {
+    const data = req.body;
+
+    this.arbitroService
+      .createArbitro(data)
+      .then((arbitro) => res.status(201).json(arbitro))
+      .catch((error) => this.handleError(error, res));
+  };
 }
