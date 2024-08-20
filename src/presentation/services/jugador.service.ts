@@ -12,6 +12,7 @@ export class JugadorService {
           id_jugador: true,
           nombre_jugador: true,
           apellido_jugador: true,
+          clubId: true,
         },
       });
 
@@ -24,6 +25,16 @@ export class JugadorService {
   async getJugadorById(id: number) {
     try {
       const jugador = await prisma.jugador.findUnique({
+        select: {
+          id_jugador: true,
+          nombre_jugador: true,
+          apellido_jugador: true,
+          nacionalidad_jugador: true,
+          fechaNac_jugador: true,
+          posicion_jugador: true,
+          estatura_jugador: true,
+          club_jugador: true,
+        },
         where: {
           id_jugador: id,
         },
@@ -40,6 +51,7 @@ export class JugadorService {
           .toISOString()
           .split("T")[0],
         edad,
+        club_jugador: jugador?.club_jugador.nombre_club,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
@@ -50,7 +62,11 @@ export class JugadorService {
     try {
       const club = await prisma.club.findUnique({
         select: {
-          jugadores_club: true,
+          jugadores_club: {
+            include: {
+              club_jugador: true,
+            },
+          },
         },
         where: {
           id_club: id,
@@ -58,10 +74,19 @@ export class JugadorService {
       });
 
       if (!club) {
-        throw CustomError.notFound("Jugador not found");
+        throw CustomError.notFound("Club not found");
       }
 
-      return club;
+      const jugadoresConEdad = club.jugadores_club.map((jugador) => ({
+        ...jugador,
+        fechaNac_jugador: new Date(jugador.fechaNac_jugador)
+          .toISOString()
+          .split("T")[0],
+        edad: calculateAge(new Date(jugador.fechaNac_jugador)),
+        club_jugador: jugador?.club_jugador.nombre_club,
+      }));
+
+      return jugadoresConEdad;
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
