@@ -29,4 +29,28 @@ export class ArbitroController {
       .then((arbitro) => res.status(200).json(arbitro))
       .catch((error) => this.handleError(error, res));
   };
+
+  deleteArbitroById = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    this.arbitroService
+      .deleteArbitroById(id)
+      .then((arbitro) => res.status(200).json(arbitro))
+      .catch((error) => this.handleError(error, res));
+  };
+
+  createArbitro = async (req: Request, res: Response) => {
+    const { nombre_arbitro, apellido_arbitro, fechaNac_arbitro } = req.query;
+
+    const data = {
+      nombre_arbitro: nombre_arbitro as string,
+      apellido_arbitro: apellido_arbitro as string,
+      fechaNac_arbitro: fechaNac_arbitro as string,
+    };
+
+    this.arbitroService
+      .createArbitro(data)
+      .then((arbitro) => res.status(201).json(arbitro))
+      .catch((error) => this.handleError(error, res));
+  };
 }
