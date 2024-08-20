@@ -8,6 +8,7 @@ export class ArbitroService {
     try {
       const arbitros = await prisma.arbitro.findMany({
         select: {
+          id_arbitro: true,
           nombre_arbitro: true,
           apellido_arbitro: true,
         },
