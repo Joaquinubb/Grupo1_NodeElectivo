@@ -62,9 +62,14 @@ export class JugadorService {
     try {
       const club = await prisma.club.findUnique({
         select: {
+          nombre_club: true,
           jugadores_club: {
-            include: {
-              club_jugador: true,
+            select: {
+              id_jugador: true,
+              nombre_jugador: true,
+              apellido_jugador: true,
+              fechaNac_jugador: true,
+              posicion_jugador: true,
             },
           },
         },
@@ -78,15 +83,17 @@ export class JugadorService {
       }
 
       const jugadoresConEdad = club.jugadores_club.map((jugador) => ({
-        ...jugador,
-        fechaNac_jugador: new Date(jugador.fechaNac_jugador)
-          .toISOString()
-          .split("T")[0],
+        id: jugador.id_jugador,
+        nombre: jugador.nombre_jugador,
+        apellido: jugador.apellido_jugador,
         edad: calculateAge(new Date(jugador.fechaNac_jugador)),
-        club_jugador: jugador?.club_jugador.nombre_club,
+        posicion: jugador.posicion_jugador,
       }));
 
-      return jugadoresConEdad;
+      return {
+        nombre_club: club.nombre_club,
+        jugadores: jugadoresConEdad,
+      };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
