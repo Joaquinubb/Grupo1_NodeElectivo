@@ -54,7 +54,9 @@ export class ArbitroService {
 
   async createArbitro(data: any) {
     try {
-      const fechaNacISO = new Date(data.fechaNac_arbitro).toISOString();
+      const fechaNac = new Date(data.fechaNac_arbitro);
+      fechaNac.setUTCHours(0, 0, 0, 0);
+      const fechaNacISO = fechaNac.toISOString();
 
       const arbitro = await prisma.arbitro.create({
         data: {
