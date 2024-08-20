@@ -1,5 +1,6 @@
 import { CustomError } from "../../domain/errors/custom.error";
 import { prisma } from "../../data/postgres";
+import { calculateAge } from "../../config/age";
 
 export class JugadorService {
   constructor() {}
@@ -32,7 +33,14 @@ export class JugadorService {
         throw CustomError.notFound("Jugador not found");
       }
 
-      return jugador;
+      const edad = calculateAge(new Date(jugador.fechaNac_jugador));
+      return {
+        ...jugador,
+        fechaNac_jugador: new Date(jugador.fechaNac_jugador)
+          .toISOString()
+          .split("T")[0],
+        edad,
+      };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
