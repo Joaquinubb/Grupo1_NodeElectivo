@@ -31,10 +31,10 @@ export class JugadorController {
   };
 
   getJugadoresByClub = async (req: Request, res: Response) => {
-    const clubid = Number(req.params.id);
+    const { nombre } = req.query;
 
     this.jugadorService
-      .getJugadoresByClub(clubid)
+      .getJugadoresByClub(nombre as string)
       .then((jugadores) => res.status(200).json(jugadores))
       .catch((error) => this.handleError(error, res));
   };
@@ -45,6 +45,15 @@ export class JugadorController {
     this.jugadorService
       .deleteJugador(id)
       .then((jugador) => res.status(200).json(jugador))
+      .catch((error) => this.handleError(error, res));
+  };
+
+  getJugadorbyName = async (req: Request, res: Response) => {
+    const { apellido } = req.query;
+
+    this.jugadorService
+      .getJugadorByName(apellido as string)
+      .then((jugadores) => res.status(200).json(jugadores))
       .catch((error) => this.handleError(error, res));
   };
 }
