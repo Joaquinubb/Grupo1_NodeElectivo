@@ -1,20 +1,21 @@
 import { CustomError } from "../../domain/errors/custom.error";
 import { prisma } from "../../data/postgres";
+import { calculateAge } from "../../config/age";
 
 export class ArbitroService {
   constructor() {}
 
   async getArbitros() {
     try {
-      const arbitros = await prisma.arbitro.findMany({
-        select: {
-          id_arbitro: true,
-          nombre_arbitro: true,
-          apellido_arbitro: true,
-        },
-      });
-
-      return arbitros;
+      const arbitros = await prisma.arbitro.findMany({});
+      const arbitrosConEdad = arbitros.map((arbitro) => ({
+        ...arbitro,
+        fechaNac_arbitro: new Date(arbitro.fechaNac_arbitro)
+          .toISOString()
+          .split("T")[0],
+        edad: calculateAge(new Date(arbitro.fechaNac_arbitro)),
+      }));
+      return arbitrosConEdad;
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
@@ -32,7 +33,14 @@ export class ArbitroService {
         throw CustomError.notFound("Arbitro not found");
       }
 
-      return arbitro;
+      const edad = calculateAge(new Date(arbitro.fechaNac_arbitro));
+      return {
+        ...arbitro,
+        fechaNac_arbitro: new Date(arbitro.fechaNac_arbitro)
+          .toISOString()
+          .split("T")[0],
+        edad,
+      };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }

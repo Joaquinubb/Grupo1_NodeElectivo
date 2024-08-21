@@ -1,5 +1,6 @@
 import { CustomError } from "../../domain/errors/custom.error";
 import { prisma } from "../../data/postgres";
+import { calculateAge } from "../../config/age";
 
 export class JugadorService {
   constructor() {}
@@ -11,6 +12,7 @@ export class JugadorService {
           id_jugador: true,
           nombre_jugador: true,
           apellido_jugador: true,
+          clubId: true,
         },
       });
 
@@ -23,6 +25,16 @@ export class JugadorService {
   async getJugadorById(id: number) {
     try {
       const jugador = await prisma.jugador.findUnique({
+        select: {
+          id_jugador: true,
+          nombre_jugador: true,
+          apellido_jugador: true,
+          nacionalidad_jugador: true,
+          fechaNac_jugador: true,
+          posicion_jugador: true,
+          estatura_jugador: true,
+          club_jugador: true,
+        },
         where: {
           id_jugador: id,
         },
@@ -32,7 +44,15 @@ export class JugadorService {
         throw CustomError.notFound("Jugador not found");
       }
 
-      return jugador;
+      const edad = calculateAge(new Date(jugador.fechaNac_jugador));
+      return {
+        ...jugador,
+        fechaNac_jugador: new Date(jugador.fechaNac_jugador)
+          .toISOString()
+          .split("T")[0],
+        edad,
+        club_jugador: jugador?.club_jugador.nombre_club,
+      };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
@@ -42,7 +62,16 @@ export class JugadorService {
     try {
       const club = await prisma.club.findUnique({
         select: {
-          jugadores_club: true,
+          nombre_club: true,
+          jugadores_club: {
+            select: {
+              id_jugador: true,
+              nombre_jugador: true,
+              apellido_jugador: true,
+              fechaNac_jugador: true,
+              posicion_jugador: true,
+            },
+          },
         },
         where: {
           id_club: id,
@@ -50,10 +79,21 @@ export class JugadorService {
       });
 
       if (!club) {
-        throw CustomError.notFound("Jugador not found");
+        throw CustomError.notFound("Club not found");
       }
 
-      return club;
+      const jugadoresConEdad = club.jugadores_club.map((jugador) => ({
+        id: jugador.id_jugador,
+        nombre: jugador.nombre_jugador,
+        apellido: jugador.apellido_jugador,
+        edad: calculateAge(new Date(jugador.fechaNac_jugador)),
+        posicion: jugador.posicion_jugador,
+      }));
+
+      return {
+        nombre_club: club.nombre_club,
+        jugadores: jugadoresConEdad,
+      };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
