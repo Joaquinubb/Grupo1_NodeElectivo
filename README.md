@@ -1,4 +1,4 @@
-# Chilean Premier League - Proyecto Grupo 1 - Electivo Node
+# Chilean Premier League - Proyecto Grupo 1 - Node
 
 ## Preparación Inicial
 
