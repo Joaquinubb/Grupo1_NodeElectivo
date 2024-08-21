@@ -98,4 +98,18 @@ export class JugadorService {
       throw CustomError.internalServer(`${error}`);
     }
   }
+
+  async deleteJugador(id: number) {
+    try {
+      const jugador = await prisma.jugador.delete({
+        where: {
+          id_jugador: id,
+        },
+      });
+
+      return jugador;
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
 }

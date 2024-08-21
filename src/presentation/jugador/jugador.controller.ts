@@ -38,4 +38,13 @@ export class JugadorController {
       .then((jugadores) => res.status(200).json(jugadores))
       .catch((error) => this.handleError(error, res));
   };
+
+  deleteJugador = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    this.jugadorService
+      .deleteJugador(id)
+      .then((jugador) => res.status(200).json(jugador))
+      .catch((error) => this.handleError(error, res));
+  };
 }

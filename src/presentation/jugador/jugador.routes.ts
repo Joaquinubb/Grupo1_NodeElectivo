@@ -13,6 +13,7 @@ export class JugadorRoutes {
     router.get("/", jugadorController.getJugadores);
     router.get("/club/:id", jugadorController.getJugadoresByClub);
     router.get("/:id", jugadorController.getJugadoresById);
+    router.delete("/:id", jugadorController.deleteJugador);
 
     return router;
   }
