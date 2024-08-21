@@ -12,6 +12,8 @@ export class ClubRoutes {
 
     router.get("/", clubController.getClubes);
     router.get("/:id", clubController.getClubById);
+    router.post("/", clubController.createClub);
+
     return router;
   }
 }
