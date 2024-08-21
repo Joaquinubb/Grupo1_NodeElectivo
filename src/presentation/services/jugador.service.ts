@@ -1,6 +1,7 @@
 import { CustomError } from "../../domain/errors/custom.error";
 import { prisma } from "../../data/postgres";
 import { calculateAge } from "../../config/age";
+import { CreateJugador } from "../../domain/entities/jugador.entity";
 
 export class JugadorService {
   constructor() {}
@@ -51,7 +52,7 @@ export class JugadorService {
           .toISOString()
           .split("T")[0],
         edad,
-        club_jugador: jugador?.club_jugador.nombre_club,
+        club_jugador: jugador?.club_jugador?.nombre_club,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
@@ -95,6 +96,41 @@ export class JugadorService {
         jugadores: jugadoresConEdad,
       };
     } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  async createJugador(data: CreateJugador) {
+    try {
+      const fechaNac = new Date(data.fechaNac_jugador);
+      fechaNac.setUTCHours(0, 0, 0, 0);
+      const fechaNacISO = fechaNac.toISOString();
+      let jugador;
+      if (data.club_jugador) {
+        jugador = await prisma.jugador.create({
+          data: {
+            ...data,
+            fechaNac_jugador: fechaNacISO,
+            club_jugador: {
+              connect: { nombre_club: data.club_jugador },
+            },
+          },
+        });
+      } else {
+        jugador = await prisma.jugador.create({
+          data: {
+            ...data,
+            fechaNac_jugador: fechaNacISO,
+            club_jugador: undefined,
+          },
+        });
+      }
+
+      return jugador;
+    } catch (error) {
+      if (error instanceof CustomError) {
+        throw error;
+      }
       throw CustomError.internalServer(`${error}`);
     }
   }
