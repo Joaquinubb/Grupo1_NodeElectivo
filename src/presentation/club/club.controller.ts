@@ -22,11 +22,11 @@ export class ClubController {
       .catch((error) => this.handleError(error, res));
   };
 
-  getClubById = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
+  getClubByName = async (req: Request, res: Response) => {
+    const { nombre_club } = req.query;
 
     this.clubService
-      .getClubById(id)
+      .getClubByName(nombre_club as string)
       .then((club) => res.status(200).json(club))
       .catch((error) => this.handleError(error, res));
   };

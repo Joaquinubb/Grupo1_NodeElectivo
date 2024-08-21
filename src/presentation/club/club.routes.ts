@@ -11,7 +11,7 @@ export class ClubRoutes {
     const clubController = new ClubController(clubService);
 
     router.get("/", clubController.getClubes);
-    router.get("/:id", clubController.getClubById);
+    router.get("/club", clubController.getClubByName);
     router.post("/", clubController.createClub);
 
     return router;

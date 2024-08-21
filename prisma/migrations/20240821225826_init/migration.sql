@@ -31,7 +31,7 @@ CREATE TABLE "Entrenador" (
     "apellido_entrenador" TEXT NOT NULL,
     "nacionalidad_entrenador" TEXT NOT NULL,
     "fechaNac_entrenador" TIMESTAMP(3) NOT NULL,
-    "clubId" INTEGER NOT NULL,
+    "clubId" INTEGER,
 
     CONSTRAINT "Entrenador_pkey" PRIMARY KEY ("id_entrenador")
 );
@@ -46,16 +46,19 @@ CREATE TABLE "Jugador" (
     "precio_jugador" DOUBLE PRECISION NOT NULL,
     "posicion_jugador" "PosicionJugador" NOT NULL,
     "estatura_jugador" DOUBLE PRECISION NOT NULL,
-    "clubId" INTEGER NOT NULL,
+    "clubId" INTEGER,
 
     CONSTRAINT "Jugador_pkey" PRIMARY KEY ("id_jugador")
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Club_nombre_club_key" ON "Club"("nombre_club");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Entrenador_clubId_key" ON "Entrenador"("clubId");
 
 -- AddForeignKey
-ALTER TABLE "Entrenador" ADD CONSTRAINT "Entrenador_clubId_fkey" FOREIGN KEY ("clubId") REFERENCES "Club"("id_club") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Entrenador" ADD CONSTRAINT "Entrenador_clubId_fkey" FOREIGN KEY ("clubId") REFERENCES "Club"("id_club") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Jugador" ADD CONSTRAINT "Jugador_clubId_fkey" FOREIGN KEY ("clubId") REFERENCES "Club"("id_club") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Jugador" ADD CONSTRAINT "Jugador_clubId_fkey" FOREIGN KEY ("clubId") REFERENCES "Club"("id_club") ON DELETE SET NULL ON UPDATE CASCADE;
