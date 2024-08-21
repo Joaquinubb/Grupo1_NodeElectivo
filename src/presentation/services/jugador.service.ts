@@ -99,7 +99,7 @@ export class JugadorService {
             .toISOString()
             .split("T")[0],
           edad,
-          club_jugador: jugador.club_jugador.nombre_club,
+          club_jugador: jugador.club_jugador?.nombre_club,
         };
       });
 
@@ -184,6 +184,8 @@ export class JugadorService {
       if (error instanceof CustomError) {
         throw error;
       }
+    }
+  }
 
   async deleteJugador(id: string) {
     const idNumber = Number(id);

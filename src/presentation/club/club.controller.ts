@@ -23,10 +23,10 @@ export class ClubController {
   };
 
   getClubByName = async (req: Request, res: Response) => {
-    const { nombre_club } = req.query;
+    const { nombre } = req.query;
 
     this.clubService
-      .getClubByName(nombre_club as string)
+      .getClubByName(nombre as string)
       .then((club) => res.status(200).json(club))
       .catch((error) => this.handleError(error, res));
   };
