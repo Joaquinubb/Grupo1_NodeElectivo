@@ -22,11 +22,11 @@ export class ClubController {
       .catch((error) => this.handleError(error, res));
   };
 
-  getClubById = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
+  getClubByName = async (req: Request, res: Response) => {
+    const { nombre } = req.query;
 
     this.clubService
-      .getClubById(id)
+      .getClubByName(nombre as string)
       .then((club) => res.status(200).json(club))
       .catch((error) => this.handleError(error, res));
   };
@@ -58,6 +58,15 @@ export class ClubController {
     this.clubService
       .createClub(data)
       .then((club) => res.status(201).json(club))
+      .catch((error) => this.handleError(error, res));
+  };
+
+  deleteClubById = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    this.clubService
+      .deleteClubById(id)
+      .then((club) => res.status(200).json(club))
       .catch((error) => this.handleError(error, res));
   };
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsnd --respawn --clear src/app.ts",
-    "seed": "npx prisma migrate dev && ts-node ./seed.ts",
+    "seed": "npx prisma migrate dev --name init && ts-node ./seed.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js"
   },

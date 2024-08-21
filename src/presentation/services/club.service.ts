@@ -1,3 +1,4 @@
+import { normalizeString } from "../../config/normalize";
 import { prisma } from "../../data/postgres";
 import { CreateClub } from "../../domain/entities/club.entity";
 import { CustomError } from "../../domain/errors/custom.error";
@@ -21,9 +22,11 @@ export class ClubService {
     }
   }
 
-  async getClubById(id: number) {
+  async getClubByName(nombre_club: string) {
+    const normalizedClubName = normalizeString(nombre_club);
+
     try {
-      const club = await prisma.club.findUnique({
+      const allClubes = await prisma.club.findMany({
         select: {
           id_club: true,
           nombre_club: true,
@@ -39,10 +42,11 @@ export class ClubService {
             },
           },
         },
-        where: {
-          id_club: id,
-        },
       });
+
+      const club = allClubes.find(
+        (club) => normalizeString(club.nombre_club) === normalizedClubName
+      );
 
       if (!club) {
         throw CustomError.notFound("Club not found");
@@ -106,6 +110,31 @@ export class ClubService {
         throw error;
       }
       throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  async deleteClubById(id: number) {
+    try {
+        // Eliminar jugadores relacionados con el club
+        await prisma.jugador.updateMany({
+            where: { clubId: id },
+            data: {clubId: undefined }
+        });
+
+        // Eliminar entrenadores relacionados con el club
+        await prisma.entrenador.updateMany({
+            where: { clubId: id },
+            data: { clubId: undefined }
+        });
+
+        // Ahora eliminar el club
+        const club = await prisma.club.delete({
+            where: { id_club: id },
+        });
+
+        return club;
+    } catch (error) {
+        throw error;
     }
   }
 }
