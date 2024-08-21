@@ -60,4 +60,13 @@ export class ClubController {
       .then((club) => res.status(201).json(club))
       .catch((error) => this.handleError(error, res));
   };
+
+  deleteClubById = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+
+    this.clubService
+      .deleteClubById(id)
+      .then((club) => res.status(200).json(club))
+      .catch((error) => this.handleError(error, res));
+  };
 }

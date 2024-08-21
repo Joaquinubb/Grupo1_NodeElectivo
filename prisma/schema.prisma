@@ -23,7 +23,7 @@ model Arbitro {
 
 model Club {
   id_club             Int         @id @default(autoincrement())
-  nombre_club         String
+  nombre_club         String      @unique
   ciudad_club         String
   estadio_club        String
   escudo_club         String
@@ -39,8 +39,8 @@ model Entrenador {
   apellido_entrenador     String
   nacionalidad_entrenador String
   fechaNac_entrenador     DateTime
-  club_entrenador         Club     @relation(fields: [clubId], references: [id_club])
-  clubId                  Int      @unique
+  club_entrenador         Club?     @relation(fields: [clubId], references: [id_club])
+  clubId                  Int?      @unique
 }
 
 model Jugador {
@@ -52,6 +52,6 @@ model Jugador {
   precio_jugador       Float
   posicion_jugador     PosicionJugador
   estatura_jugador     Float
-  club_jugador         Club            @relation(fields: [clubId], references: [id_club])
-  clubId               Int
+  club_jugador         Club?            @relation(fields: [clubId], references: [id_club])
+  clubId               Int?
 }

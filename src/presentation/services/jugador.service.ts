@@ -51,7 +51,7 @@ export class JugadorService {
           .toISOString()
           .split("T")[0],
         edad,
-        club_jugador: jugador?.club_jugador.nombre_club,
+        club_jugador: jugador?.club_jugador?.nombre_club,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);

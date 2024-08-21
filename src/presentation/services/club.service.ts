@@ -108,4 +108,29 @@ export class ClubService {
       throw CustomError.internalServer(`${error}`);
     }
   }
+
+  async deleteClubById(id: number) {
+    try {
+        // Eliminar jugadores relacionados con el club
+        await prisma.jugador.updateMany({
+            where: { clubId: id },
+            data: {clubId: undefined }
+        });
+
+        // Eliminar entrenadores relacionados con el club
+        await prisma.entrenador.updateMany({
+            where: { clubId: id },
+            data: { clubId: undefined }
+        });
+
+        // Ahora eliminar el club
+        const club = await prisma.club.delete({
+            where: { id_club: id },
+        });
+
+        return club;
+    } catch (error) {
+        throw error;
+    }
+  }
 }

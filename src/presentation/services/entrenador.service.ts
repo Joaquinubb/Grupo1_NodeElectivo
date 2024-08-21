@@ -18,7 +18,7 @@ export class EntrenadorService {
 
       const entrenadoresToSend = entrenadores.map((entrenador) => ({
         ...entrenador,
-        club_entrenador: entrenador.club_entrenador.nombre_club,
+        club_entrenador: entrenador.club_entrenador?.nombre_club,
       }));
 
       return entrenadoresToSend;
@@ -48,7 +48,7 @@ export class EntrenadorService {
         fechaNac_entrenador: new Date(entrenador?.fechaNac_entrenador!)
           .toISOString()
           .split("T")[0],
-        club_entrenador: entrenador?.club_entrenador.nombre_club,
+        club_entrenador: entrenador?.club_entrenador?.nombre_club,
         edad_entrenador: calculateAge(entrenador?.fechaNac_entrenador!),
       };
 
