@@ -14,7 +14,7 @@ export class JugadorRoutes {
     router.get("/club", jugadorController.getJugadoresByClub);
     router.get("/:id", jugadorController.getJugadoresById);
     router.get("/", jugadorController.getJugadorbyName);
-    router.delete("/:id", jugadorController.deleteJugador);
+    router.delete("/delete", jugadorController.deleteJugador);
 
     return router;
   }

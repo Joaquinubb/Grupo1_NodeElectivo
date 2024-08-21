@@ -40,10 +40,10 @@ export class JugadorController {
   };
 
   deleteJugador = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
+    const { id } = req.query;
 
     this.jugadorService
-      .deleteJugador(id)
+      .deleteJugador(id as string)
       .then((jugador) => res.status(200).json(jugador))
       .catch((error) => this.handleError(error, res));
   };

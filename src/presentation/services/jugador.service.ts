@@ -152,11 +152,13 @@ export class JugadorService {
     }
   }
 
-  async deleteJugador(id: number) {
+  async deleteJugador(id: string) {
+    const idNumber = Number(id);
+
     try {
       const jugador = await prisma.jugador.delete({
         where: {
-          id_jugador: id,
+          id_jugador: idNumber,
         },
       });
 
