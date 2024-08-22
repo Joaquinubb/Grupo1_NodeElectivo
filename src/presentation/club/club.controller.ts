@@ -71,7 +71,7 @@ export class ClubController {
   };
   
   updateClubById = async (req: Request, res: Response) => {
-      const id = Number(req.params.id);
+      const id = Number(req.query.id_club);
 
       if (isNaN(id)) {
           return res.status(400).json({ error: "ID inválido" });

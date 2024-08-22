@@ -14,7 +14,7 @@ export class ClubRoutes {
     router.get("/club", clubController.getClubByName);
     router.post("/", clubController.createClub);
     router.delete("/:id", clubController.deleteClubById);
-    router.put("/:id", clubController.updateClubById);
+    router.put("/update", clubController.updateClubById);
 
     return router;
   }
