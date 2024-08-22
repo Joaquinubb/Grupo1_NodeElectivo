@@ -69,4 +69,31 @@ export class ClubController {
       .then((club) => res.status(200).json(club))
       .catch((error) => this.handleError(error, res));
   };
+  
+  updateClubById = async (req: Request, res: Response) => {
+      const id = Number(req.params.id);
+
+      if (isNaN(id)) {
+          return res.status(400).json({ error: "ID inválido" });
+      }
+  
+      const data = {
+          nombre_club: req.query.nombre_club as string,
+          ciudad_club: req.query.ciudad_club as string,
+          estadio_club: req.query.estadio_club as string,
+          escudo_club: req.query.escudo_club as string,
+          titulosPrimera_club: req.query.titulosPrimera_club
+              ? Number(req.query.titulosPrimera_club)
+              : undefined,
+      };
+  
+      const updateData = Object.fromEntries(
+          Object.entries(data).filter(([_, value]) => value !== undefined)
+      );
+  
+      this.clubService
+          .updateClubById(id, updateData)
+          .then((updatedClub) => res.status(200).json(updatedClub))
+          .catch((error) => this.handleError(error, res));
+  };
 }
