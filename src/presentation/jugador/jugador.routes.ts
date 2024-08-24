@@ -16,6 +16,7 @@ export class JugadorRoutes {
     router.post("/", jugadorController.createJugador);
     router.get("/", jugadorController.getJugadorbyName);
     router.delete("/delete", jugadorController.deleteJugador);
+    router.put("/update", jugadorController.updateJugadorById);
     
     return router;
   }
