@@ -5,7 +5,7 @@ import { CreateJugador } from "../../domain/entities/jugador.entity";
 import { normalizeString } from "../../config/normalize";
 
 export class JugadorService {
-  constructor() { }
+  constructor() {}
 
   async getJugadores() {
     try {
@@ -187,13 +187,19 @@ export class JugadorService {
     }
   }
 
-  async deleteJugador(id: string) {
-    const idNumber = Number(id);
+  async deleteJugador(id: number) {
+    const jugadorExist = await prisma.jugador.findFirst({
+      where: { id_jugador: id },
+    });
+
+    if (!jugadorExist) {
+      throw CustomError.notFound("Jugador no existe");
+    }
 
     try {
       const jugador = await prisma.jugador.delete({
         where: {
-          id_jugador: idNumber,
+          id_jugador: id,
         },
       });
 
@@ -223,9 +229,9 @@ export class JugadorService {
           nacionalidad_jugador: data.nacionalidad_jugador,
           fechaNac_jugador: data.fechaNac_jugador,
           precio_jugador: data.precio_jugador,
-          posicion_jugador: data.posicion_jugador,  
+          posicion_jugador: data.posicion_jugador,
           estatura_jugador: data.estatura_jugador,
-          clubId: club ? club.id_club : null,  
+          clubId: club ? club.id_club : null,
         },
       });
 

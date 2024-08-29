@@ -1,5 +1,6 @@
 /postgres
 prisma/migrations/
+*.rar
 
 # Logs
 logs

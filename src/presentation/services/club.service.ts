@@ -114,50 +114,68 @@ export class ClubService {
   }
 
   async deleteClubById(id: number) {
+    const clubExist = await prisma.club.findFirst({
+      where: { id_club: id },
+    });
+
+    if (!clubExist) {
+      throw CustomError.notFound("Club no existe");
+    }
+
     try {
-        // Eliminar jugadores relacionados con el club
-        await prisma.jugador.updateMany({
-            where: { clubId: id },
-            data: {clubId: undefined }
-        });
+      // Eliminar jugadores relacionados con el club
+      await prisma.jugador.updateMany({
+        where: { clubId: id },
+        data: { clubId: undefined },
+      });
 
-        // Eliminar entrenadores relacionados con el club
-        await prisma.entrenador.updateMany({
-            where: { clubId: id },
-            data: { clubId: undefined }
-        });
+      // Eliminar entrenadores relacionados con el club
+      await prisma.entrenador.updateMany({
+        where: { clubId: id },
+        data: { clubId: undefined },
+      });
 
-        // Ahora eliminar el club
-        const club = await prisma.club.delete({
-            where: { id_club: id },
-        });
+      // Ahora eliminar el club
+      const club = await prisma.club.delete({
+        where: { id_club: id },
+      });
 
-        return club;
+      return club;
     } catch (error) {
-        throw error;
+      throw error;
     }
   }
-  
-  async updateClubById(id: number, data:{
-    nombre_club?: string; 
-    ciudad_club?: string; 
-    estadio_club?: string; 
-    escudo_club?: string; 
-    titulosPrimera_club?: number 
-  }){
+
+  async updateClubById(
+    id: number,
+    data: {
+      nombre_club?: string;
+      ciudad_club?: string;
+      estadio_club?: string;
+      escudo_club?: string;
+      titulosPrimera_club?: number;
+    }
+  ) {
+    const clubExist = await prisma.club.findFirst({
+      where: { id_club: id },
+    });
+
+    if (!clubExist) {
+      throw CustomError.notFound("Club no existe");
+    }
     try {
       const updateClub = await prisma.club.update({
-        where: {id_club: id},
+        where: { id_club: id },
         data: {
           nombre_club: data.nombre_club,
           ciudad_club: data.ciudad_club,
           estadio_club: data.estadio_club,
           escudo_club: data.escudo_club,
           titulosPrimera_club: data.titulosPrimera_club,
-        }
+        },
       });
       return updateClub;
-    }catch (error) {
+    } catch (error) {
       if (error instanceof CustomError) {
         throw error;
       }
