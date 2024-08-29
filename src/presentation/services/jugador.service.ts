@@ -5,7 +5,7 @@ import { CreateJugador } from "../../domain/entities/jugador.entity";
 import { normalizeString } from "../../config/normalize";
 
 export class JugadorService {
-  constructor() {}
+  constructor() { }
 
   async getJugadores() {
     try {
@@ -198,6 +198,38 @@ export class JugadorService {
       });
 
       return jugador;
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  async updateJugadorbyId(id: number, data: CreateJugador) {
+    try {
+      let club = null;
+      if (data.club_jugador) {
+        club = await prisma.club.findUnique({
+          where: { nombre_club: data.club_jugador },
+        });
+        if (!club) {
+          throw new Error(`Club no encontrado: ${data.club_jugador}`);
+        }
+      }
+
+      const updateJugador = await prisma.jugador.update({
+        where: { id_jugador: id },
+        data: {
+          nombre_jugador: data.nombre_jugador,
+          apellido_jugador: data.apellido_jugador,
+          nacionalidad_jugador: data.nacionalidad_jugador,
+          fechaNac_jugador: data.fechaNac_jugador,
+          precio_jugador: data.precio_jugador,
+          posicion_jugador: data.posicion_jugador,  
+          estatura_jugador: data.estatura_jugador,
+          clubId: club ? club.id_club : null,  
+        },
+      });
+
+      return updateJugador;
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
