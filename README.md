@@ -20,7 +20,7 @@
 
 ## Endpoints funcionales
 
-1. GET: `localhost:3000/api/arbitros` obtiene todos los árbitros.
+1. GET: *`localhost:3000/api/arbitros`* obtiene todos los árbitros.
 2. GET: `localhost:3000/api/clubes` obtiene todos los clubes.
 3. GET: `localhost:3000/api/clubes/club?nombre=` obtiene un club por nombre.
 4. POST: `localhost:3000/api/clubes` crea un club.
