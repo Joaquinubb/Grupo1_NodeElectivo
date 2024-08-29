@@ -137,4 +137,31 @@ export class ClubService {
         throw error;
     }
   }
+  
+  async updateClubById(id: number, data:{
+    nombre_club?: string; 
+    ciudad_club?: string; 
+    estadio_club?: string; 
+    escudo_club?: string; 
+    titulosPrimera_club?: number 
+  }){
+    try {
+      const updateClub = await prisma.club.update({
+        where: {id_club: id},
+        data: {
+          nombre_club: data.nombre_club,
+          ciudad_club: data.ciudad_club,
+          estadio_club: data.estadio_club,
+          escudo_club: data.escudo_club,
+          titulosPrimera_club: data.titulosPrimera_club,
+        }
+      });
+      return updateClub;
+    }catch (error) {
+      if (error instanceof CustomError) {
+        throw error;
+      }
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
 }
