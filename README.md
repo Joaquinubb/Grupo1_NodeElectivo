@@ -33,7 +33,7 @@
 9. POST: `localhost:3000/api/jugadores` crea un jugador.
     Ejemplo: `localhost:3000/api/jugadores/?nombre_jugador=Lionel&apellido_jugador=Messi&nacionalidad_jugador=Argentino&fechaNac_jugador=1986-06-24&posicion_jugador=DELANTERO&estatura_jugador=170&precio_jugador=0&club_jugador=Audax Italiano`
 10. PUT: `localhost:3000/api/jugadores` edita un jugador.
-    Ejemplo: `localhost:3000/api/jugadores/update?id_jugador=1&estatura_jugador=185` 
+    Ejemplo: `localhost:3000/api/jugadores/update?id=1&estatura_jugador=185` 
 11. DELETE: `localhost:3000/api/jugadores/delete?id=` elimina un jugador por id.
 12. GET: `localhost:3000/api/entrenadores` obtiene todos los entrenadores.
 13. GET: `localhost:3000/api/entrenadores/id` obtiene un entrenador por id OJO ARREGLAR.
