@@ -58,4 +58,6 @@
 
 12. GET: `localhost:3000/api/entrenadores` devuelve todos los entrenadores.
 
-13. GET: `localhost:3000/api/entrenadores/id` devuelve los detalles de un entrenador por id MEJORAR A NOMBRE.
+13. GET: `localhost:3000/api/entrenadores/entrenador?apellido=` devuelve los detalles de un entrenador por apellido
+
+    Ejemplo: `localhost:3000/api/entrenadores/entrenador?apellido=Almirón`

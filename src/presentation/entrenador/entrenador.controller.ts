@@ -34,4 +34,13 @@ export class EntrenadorController {
       .then((entrenador) => res.status(200).json(entrenador))
       .catch((error) => this.handleError(error, res));
   };
+
+  getEntrenadorbyName = async (req: Request, res: Response) => {
+    const { apellido } = req.query;
+
+    this.entrandorService
+      .getEntrenadorByName(apellido as string)
+      .then((entrenadores) => res.status(200).json(entrenadores))
+      .catch((error) => this.handleError(error, res));
+  };
 }
