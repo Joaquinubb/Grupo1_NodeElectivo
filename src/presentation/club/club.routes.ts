@@ -13,7 +13,7 @@ export class ClubRoutes {
     router.get("/", clubController.getClubes);
     router.get("/club", clubController.getClubByName);
     router.post("/", clubController.createClub);
-    router.delete("/", clubController.deleteClubById);
+    router.delete("/delete", clubController.deleteClubById);
     router.put("/update", clubController.updateClubById);
 
     return router;

@@ -20,24 +20,42 @@
 
 ## Endpoints funcionales
 
-1. GET: `localhost:3000/api/arbitros` obtiene todos los árbitros.
-2. GET: `localhost:3000/api/clubes` obtiene todos los clubes.
-3. GET: `localhost:3000/api/clubes/club?nombre=` obtiene un club por nombre.
+1. GET: `localhost:3000/api/arbitros` devuelve todos los árbitros.
+
+2. GET: `localhost:3000/api/clubes` devuelve todos los clubes.
+
+3. GET: `localhost:3000/api/clubes/club?nombre=` devuelve los detalles de un club.
+
+   Ejemplo: `localhost:3000/api/clubes/club?nombre=Ñublense`
+
 4. POST: `localhost:3000/api/clubes` crea un club.
-   Ejemplo: localhost:3000/api/clubes?nombre_club=UBB&ciudad_club=Chillan&estadio_club=FM&fechaFund_club=2024-08-21&titulosPrimera_club=1&escudo_club=a.png
-5. PUT: `localhost:3000/api/clubes?id=` edita un club.
-   Ejemplo: `localhost:3000/api/clubes?id=1&ciudad_club=Chillan&estadio_club=FM&fechaFund_club=2024-08-21`
-6. DELETE: `localhost:3000/api/clubes/id` elimina un club OJO ARREGLAR.
-7. GET: `localhost:3000/api/jugadores?apellido=` obtiene los jugadores por apellido.
-8. GET: `localhost:3000/api/jugadores/club?nombre=` obtiene los jugadores de un club por nombre.
+
+   Ejemplo: `localhost:3000/api/clubes?nombre_club=UBB&ciudad_club=Chillan&estadio_club=FM&fechaFund_club=2024-08-21&titulosPrimera_club=1&escudo_club=a.png`
+
+5. PUT: `localhost:3000/api/clubes/update?id=` edita un club por su id.
+
+   Ejemplo: `localhost:3000/api/clubes/update?id=17&ciudad_club=Chillan Viejo`
+
+6. DELETE: `localhost:3000/api/clubes/delete?id=` elimina un club por su id.
+
+7. GET: `localhost:3000/api/jugadores?apellido=` devuelve los jugadores por apellido.
+
+   Ejemplo: `localhost:3000/api/jugadores?apellido=Vidal`
+
+8. GET: `localhost:3000/api/jugadores/club?nombre=` devuelve los jugadores de un club.
+
+   Ejemplo: `localhost:3000/api/jugadores/club?nombre=Ñublense`
+
 9. POST: `localhost:3000/api/jugadores` crea un jugador.
-    Ejemplo: `localhost:3000/api/jugadores/?nombre_jugador=Lionel&apellido_jugador=Messi&nacionalidad_jugador=Argentino&fechaNac_jugador=1986-06-24&posicion_jugador=DELANTERO&estatura_jugador=170&precio_jugador=0&club_jugador=Audax Italiano`
-10. PUT: `localhost:3000/api/jugadores` edita un jugador.
-    Ejemplo: `localhost:3000/api/jugadores/update?id=1&estatura_jugador=185` 
+
+   Ejemplo: `localhost:3000/api/jugadores/?nombre_jugador=Lionel&apellido_jugador=Messi&nacionalidad_jugador=Argentino&fechaNac_jugador=1986-06-24&posicion_jugador=DELANTERO&estatura_jugador=170&precio_jugador=0&club_jugador=Audax Italiano`
+
+10. PUT: `localhost:3000/api/jugadores/update?id=` edita un jugador por su id SE PONE NULO EL CLUB.
+
+    Ejemplo: `localhost:3000/api/jugadores/update?id=567&estatura_jugador=185`
+
 11. DELETE: `localhost:3000/api/jugadores/delete?id=` elimina un jugador por id.
-12. GET: `localhost:3000/api/entrenadores` obtiene todos los entrenadores.
-13. GET: `localhost:3000/api/entrenadores/id` obtiene un entrenador por id OJO ARREGLAR.
 
+12. GET: `localhost:3000/api/entrenadores` devuelve todos los entrenadores.
 
-
-
+13. GET: `localhost:3000/api/entrenadores/id` devuelve los detalles de un entrenador por id MEJORAR A NOMBRE.
