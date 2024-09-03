@@ -50,7 +50,7 @@
 
    Ejemplo: `localhost:3000/api/jugadores/?nombre_jugador=Lionel&apellido_jugador=Messi&nacionalidad_jugador=Argentino&fechaNac_jugador=1986-06-24&posicion_jugador=DELANTERO&estatura_jugador=170&precio_jugador=0&club_jugador=Audax Italiano`
 
-10. PUT: `localhost:3000/api/jugadores/update?id=` edita un jugador por su id SE PONE NULO EL CLUB.
+10. PUT: `localhost:3000/api/jugadores/update?id=` edita un jugador por su id.
 
     Ejemplo: `localhost:3000/api/jugadores/update?id=567&estatura_jugador=185`
 
