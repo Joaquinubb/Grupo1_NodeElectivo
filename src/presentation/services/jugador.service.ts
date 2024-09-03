@@ -211,14 +211,15 @@ export class JugadorService {
 
   async updateJugadorbyId(id: number, data: CreateJugador) {
     try {
-      let club = null;
+      let clubId = undefined;
       if (data.club_jugador) {
-        club = await prisma.club.findUnique({
+        const club = await prisma.club.findUnique({
           where: { nombre_club: data.club_jugador },
         });
         if (!club) {
           throw new Error(`Club no encontrado: ${data.club_jugador}`);
         }
+        clubId = club.id_club;
       }
 
       const updateJugador = await prisma.jugador.update({
@@ -231,7 +232,7 @@ export class JugadorService {
           precio_jugador: data.precio_jugador,
           posicion_jugador: data.posicion_jugador,
           estatura_jugador: data.estatura_jugador,
-          clubId: club ? club.id_club : null,
+          ...(clubId !== undefined && { clubId: clubId })
         },
       });
 
@@ -240,4 +241,5 @@ export class JugadorService {
       throw CustomError.internalServer(`${error}`);
     }
   }
+
 }
