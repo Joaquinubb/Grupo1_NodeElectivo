@@ -14,6 +14,9 @@ export class ClubService {
           nombre_club: true,
           escudo_club: true,
         },
+        orderBy: {
+          nombre_club: "asc",
+        },
       });
 
       return clubes;
