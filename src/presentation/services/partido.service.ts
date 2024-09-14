@@ -1,6 +1,7 @@
 import { CustomError } from "../../domain/errors/custom.error";
 import { formatDate } from "../../config/format-date";
 import { prisma } from "../../data/postgres";
+import { CreatePartido } from "../../domain/entities/partido.entity";
 
 export class PartidoService {
   constructor() {}
@@ -55,6 +56,41 @@ export class PartidoService {
       });
 
       const msg = `Partido ${id_partido} eliminado correctamente`;
+
+      return msg;
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  async createPartido(data: CreatePartido) {
+    try {
+      const {
+        fecha_partido,
+        idLocal_partido,
+        idVisita_partido,
+        idArbitro_partido,
+      } = data;
+
+      if (
+        !fecha_partido ||
+        !idLocal_partido ||
+        !idVisita_partido ||
+        !idArbitro_partido
+      ) {
+        throw CustomError.badRequest("Faltan datos del partido");
+      }
+
+      const partido = await prisma.partido.create({
+        data: {
+          fecha_partido,
+          idLocal_partido,
+          idVisita_partido,
+          idArbitro_partido,
+        },
+      });
+
+      const msg = `Partido creado correctamente con id: ${partido.id_partido}`;
 
       return msg;
     } catch (error) {

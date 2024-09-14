@@ -12,6 +12,7 @@ export class PartidoRoutes {
 
     router.get("/", partidoController.getPartidos);
     router.delete("/", partidoController.deletePartido);
+    router.post("/", partidoController.createPartido);
 
     return router;
   }
