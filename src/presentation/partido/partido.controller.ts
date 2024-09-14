@@ -20,4 +20,13 @@ export class PartidoController {
       .then((partidos) => res.status(200).json(partidos))
       .catch((error) => this.handleError(error, res));
   };
+
+  deletePartido = async (req: Request, res: Response) => {
+    const id_partido = req.query.id_partido;
+
+    this.partidoService
+      .deletePartido(+id_partido!)
+      .then((msg) => res.status(200).json(msg))
+      .catch((error) => this.handleError(error, res));
+  };
 }

@@ -36,4 +36,29 @@ export class PartidoService {
       throw CustomError.internalServer(`${error}`);
     }
   }
+
+  async deletePartido(id_partido: number) {
+    try {
+      if (!id_partido) throw CustomError.badRequest("Falta el id del partido");
+
+      const partido = await prisma.partido.findUnique({
+        where: {
+          id_partido,
+        },
+      });
+      if (!partido) throw CustomError.notFound("Partido no encontrado");
+
+      await prisma.partido.delete({
+        where: {
+          id_partido,
+        },
+      });
+
+      const msg = `Partido ${id_partido} eliminado correctamente`;
+
+      return msg;
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
 }

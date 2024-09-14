@@ -11,6 +11,7 @@ export class PartidoRoutes {
     const partidoController = new PartidoController(partidoService);
 
     router.get("/", partidoController.getPartidos);
+    router.delete("/", partidoController.deletePartido);
 
     return router;
   }
