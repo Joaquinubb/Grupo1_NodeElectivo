@@ -6162,49 +6162,49 @@ async function main() {
 
   const partidos = [
     {
-      fecha_partido: new Date("2024-10-05T14:00:00Z"),
+      fecha_partido: new Date("2024-10-04T20:00:00Z"),
       idLocal_partido: 1,
       idVisita_partido: 2,
       idArbitro_partido: 1,
     },
     {
-      fecha_partido: new Date("2024-10-05T17:00:00Z"),
+      fecha_partido: new Date("2024-10-05T12:00:00Z"),
       idLocal_partido: 3,
       idVisita_partido: 4,
       idArbitro_partido: 2,
     },
     {
-      fecha_partido: new Date("2024-10-05T20:00:00Z"),
+      fecha_partido: new Date("2024-10-05T15:00:00Z"),
       idLocal_partido: 5,
       idVisita_partido: 6,
       idArbitro_partido: 3,
     },
     {
-      fecha_partido: new Date("2024-10-05T23:00:00Z"),
+      fecha_partido: new Date("2024-10-05T18:00:00Z"),
       idLocal_partido: 7,
       idVisita_partido: 8,
       idArbitro_partido: 4,
     },
     {
-      fecha_partido: new Date("2024-10-06T14:00:00Z"),
+      fecha_partido: new Date("2024-10-06T13:00:00Z"),
       idLocal_partido: 9,
       idVisita_partido: 10,
       idArbitro_partido: 5,
     },
     {
-      fecha_partido: new Date("2024-10-06T17:00:00Z"),
+      fecha_partido: new Date("2024-10-06T16:00:00Z"),
       idLocal_partido: 11,
       idVisita_partido: 12,
       idArbitro_partido: 6,
     },
     {
-      fecha_partido: new Date("2024-10-06T20:00:00Z"),
+      fecha_partido: new Date("2024-10-06T19:00:00Z"),
       idLocal_partido: 13,
       idVisita_partido: 14,
       idArbitro_partido: 7,
     },
     {
-      fecha_partido: new Date("2024-10-06T23:00:00Z"),
+      fecha_partido: new Date("2024-10-06T21:00:00Z"),
       idLocal_partido: 15,
       idVisita_partido: 16,
       idArbitro_partido: 8,
