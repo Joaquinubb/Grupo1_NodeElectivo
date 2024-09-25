@@ -124,6 +124,7 @@ export class JugadorService {
               apellido_jugador: true,
               fechaNac_jugador: true,
               posicion_jugador: true,
+              nacionalidad_jugador: true,
             },
           },
         },
@@ -143,6 +144,7 @@ export class JugadorService {
         apellido: jugador.apellido_jugador,
         edad: calculateAge(new Date(jugador.fechaNac_jugador)),
         posicion: jugador.posicion_jugador,
+        nacionalidad: jugador.nacionalidad_jugador,
       }));
 
       return {
