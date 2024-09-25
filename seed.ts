@@ -6160,6 +6160,41 @@ async function main() {
     },
   ];
 
+  const partidos = [
+    {
+      fecha_partido: new Date("2021-08-01T12:00:00Z").toLocaleString("es-CL", {
+        timeZone: "America/Santiago",
+      }),
+      idLocal_partido: 1,
+      idVisita_partido: 2,
+      idArbitro_partido: 1,
+    },
+    {
+      fecha_partido: new Date("2021-08-01T14:00:00Z").toLocaleString("es-CL", {
+        timeZone: "America/Santiago",
+      }),
+      idLocal_partido: 3,
+      idVisita_partido: 4,
+      idArbitro_partido: 2,
+    },
+    {
+      fecha_partido: new Date("2021-08-01T16:00:00Z").toLocaleString("es-CL", {
+        timeZone: "America/Santiago",
+      }),
+      idLocal_partido: 5,
+      idVisita_partido: 6,
+      idArbitro_partido: 3,
+    },
+    {
+      fecha_partido: new Date("2021-08-02T18:00:00Z").toLocaleString("es-CL", {
+        timeZone: "America/Santiago",
+      }),
+      idLocal_partido: 7,
+      idVisita_partido: 8,
+      idArbitro_partido: 4,
+    },
+  ];
+
   for (const arbitro of arbitros) {
     await prisma.arbitro.create({
       data: arbitro,
@@ -6181,6 +6216,12 @@ async function main() {
   for (const jugador of jugadores) {
     await prisma.jugador.create({
       data: jugador,
+    });
+  }
+
+  for (const partido of partidos) {
+    await prisma.partido.create({
+      data: partido,
     });
   }
 

@@ -15,10 +15,11 @@ enum PosicionJugador {
 }
 
 model Arbitro {
-  id_arbitro       Int      @id @default(autoincrement())
+  id_arbitro       Int       @id @default(autoincrement())
   nombre_arbitro   String
   apellido_arbitro String
   fechaNac_arbitro DateTime
+  partidos         Partido[]
 }
 
 model Club {
@@ -31,6 +32,8 @@ model Club {
   entrenador_club     Entrenador? // Relación con un entrenador (opcional)
   fechaFund_club      DateTime
   titulosPrimera_club Int
+  partidos_local      Partido[]   @relation(name: "LocalClub")
+  partidos_visitante  Partido[]   @relation(name: "VisitanteClub")
 }
 
 model Entrenador {
@@ -54,4 +57,15 @@ model Jugador {
   estatura_jugador     Float
   club_jugador         Club?           @relation(fields: [clubId], references: [id_club])
   clubId               Int?
+}
+
+model Partido {
+  id_partido        Int      @id @default(autoincrement())
+  fecha_partido     DateTime
+  club_local        Club     @relation(name: "LocalClub", fields: [idLocal_partido], references: [id_club])
+  idLocal_partido   Int
+  club_visitante    Club     @relation(name: "VisitanteClub", fields: [idVisita_partido], references: [id_club])
+  idVisita_partido  Int
+  arbitro           Arbitro  @relation(fields: [idArbitro_partido], references: [id_arbitro])
+  idArbitro_partido Int
 }
