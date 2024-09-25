@@ -4,6 +4,7 @@ import { calculateAge } from "../../config/age";
 import { CreateJugador } from "../../domain/entities/jugador.entity";
 import { normalizeString } from "../../config/normalize";
 import { ValidDate } from "../../config/valid-date";
+import { PosicionJugador } from "@prisma/client";
 
 export class JugadorService {
   constructor() {}
@@ -104,6 +105,10 @@ export class JugadorService {
         };
       });
 
+      if (jugadoresModificados.length === 0) {
+        throw CustomError.notFound("La búsqueda no arrojó resultados");
+      }
+
       return jugadoresModificados;
     } catch (error) {
       throw error;
@@ -135,7 +140,7 @@ export class JugadorService {
       );
 
       if (!club) {
-        throw CustomError.notFound("Club not found");
+        throw CustomError.notFound("Club no encontrado");
       }
 
       const jugadoresConEdad = club.jugadores_club.map((jugador) => ({
@@ -146,6 +151,13 @@ export class JugadorService {
         posicion: jugador.posicion_jugador,
         nacionalidad: jugador.nacionalidad_jugador,
       }));
+
+      if (jugadoresConEdad.length === 0) {
+        return {
+          nombre_club: club.nombre_club,
+          jugadores: "No hay jugadores en este club",
+        };
+      }
 
       return {
         nombre_club: club.nombre_club,
@@ -165,7 +177,23 @@ export class JugadorService {
       fechaNac.setUTCHours(0, 0, 0, 0);
       const fechaNacISO = fechaNac.toISOString();
       let jugador;
+
+      if (
+        !Object.values(PosicionJugador).includes(
+          data.posicion_jugador.toUpperCase() as PosicionJugador
+        )
+      ) {
+        throw CustomError.badRequest("Posición inválida");
+      }
+
       if (data.club_jugador) {
+        const clubExiste = await prisma.club.findUnique({
+          where: { nombre_club: data.club_jugador },
+        });
+        if (!clubExiste) {
+          throw CustomError.notFound("Club no encontrado");
+        }
+
         jugador = await prisma.jugador.create({
           data: {
             ...data,
@@ -213,7 +241,7 @@ export class JugadorService {
     }
   }
 
-  async updateJugadorbyId(id: number, data: CreateJugador) {
+  async updateJugadorbyId(id: number, data: any) {
     try {
       let clubId = undefined;
       if (data.club_jugador) {
@@ -221,13 +249,27 @@ export class JugadorService {
           where: { nombre_club: data.club_jugador },
         });
         if (!club) {
-          throw new Error(`Club no encontrado: ${data.club_jugador}`);
+          throw CustomError.notFound("Club no encontrado");
         }
         clubId = club.id_club;
       }
 
-      if (!ValidDate(data.fechaNac_jugador)) {
+      if (data.fechaNac_jugador && !ValidDate(data.fechaNac_jugador)) {
         throw CustomError.badRequest("Fecha inválida");
+      }
+
+      const existJugador = await prisma.jugador.findUnique({
+        where: { id_jugador: id },
+      });
+      if (!existJugador) throw CustomError.notFound("Jugador no existe");
+
+      if (
+        data.posicion_jugador &&
+        !Object.values(PosicionJugador).includes(
+          data.posicion_jugador.toUpperCase() as PosicionJugador
+        )
+      ) {
+        throw CustomError.badRequest("Posición inválida");
       }
 
       const updateJugador = await prisma.jugador.update({

@@ -66,6 +66,12 @@ export class EntrenadorService {
   async getEntrenadorByName(apellido?: string) {
     const normalizedApellido = apellido ? normalizeString(apellido) : null;
 
+    if (!apellido) {
+      throw CustomError.badRequest(
+        "Apellido de entrenador no puede estar vacío"
+      );
+    }
+
     try {
       const entrenadores = await prisma.entrenador.findMany({
         select: {
@@ -103,7 +109,7 @@ export class EntrenadorService {
         }
       );
 
-      if (!entrenadores) {
+      if (entrenadoresModificados.length === 0) {
         throw CustomError.notFound("Entrenador not found");
       }
 

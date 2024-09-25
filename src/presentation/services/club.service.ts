@@ -27,6 +27,9 @@ export class ClubService {
   }
 
   async getClubByName(nombre_club: string) {
+    if (!nombre_club) {
+      throw CustomError.badRequest("Nombre de club no puede estar vacío");
+    }
     const normalizedClubName = normalizeString(nombre_club);
 
     try {
@@ -91,14 +94,18 @@ export class ClubService {
         },
       });
 
+      if (!ValidDate(data.fechaFund_club)) {
+        throw CustomError.badRequest("Fecha inválida");
+      }
+
+      if (data.titulosPrimera_club < 0 || isNaN(data.titulosPrimera_club)) {
+        throw CustomError.badRequest("Títulos inválidos");
+      }
+
       if (nombreExistente) {
         throw CustomError.conflict(
           `El nombre del club '${nombreExistente.nombre_club}' ya está en uso`
         );
-      }
-
-      if (!ValidDate(data.fechaFund_club)) {
-        throw CustomError.badRequest("Fecha inválida");
       }
 
       const fechaFund = new Date(data.fechaFund_club);
@@ -164,7 +171,8 @@ export class ClubService {
       ciudad_club?: string;
       estadio_club?: string;
       escudo_club?: string;
-      titulosPrimera_club?: number;
+      fechaFund_club?: string;
+      titulosPrimera_club?: string;
     }
   ) {
     const clubExist = await prisma.club.findFirst({
@@ -174,6 +182,31 @@ export class ClubService {
     if (!clubExist) {
       throw CustomError.notFound("Club no existe");
     }
+
+    if (data.fechaFund_club && !ValidDate(data.fechaFund_club)) {
+      throw CustomError.badRequest("Fecha inválida");
+    }
+
+    if (data.fechaFund_club == "") {
+      throw CustomError.badRequest("Fecha inválida");
+    }
+
+    if (data.titulosPrimera_club == "") {
+      throw CustomError.badRequest("Títulos inválidos");
+    }
+
+    if (data.titulosPrimera_club && +data.titulosPrimera_club < 0) {
+      throw CustomError.badRequest("Títulos inválidos");
+    }
+
+    if (data.titulosPrimera_club && isNaN(+data.titulosPrimera_club)) {
+      throw CustomError.badRequest("Títulos inválidos");
+    }
+
+    if (data.titulosPrimera_club && data.titulosPrimera_club.trim() === "") {
+      throw CustomError.badRequest("Títulos inválidos");
+    }
+
     try {
       const updateClub = await prisma.club.update({
         where: { id_club: id },
@@ -182,7 +215,11 @@ export class ClubService {
           ciudad_club: data.ciudad_club,
           estadio_club: data.estadio_club,
           escudo_club: data.escudo_club,
-          titulosPrimera_club: data.titulosPrimera_club,
+          fechaFund_club: data.fechaFund_club,
+          titulosPrimera_club:
+            data.titulosPrimera_club !== undefined
+              ? +data.titulosPrimera_club
+              : clubExist.titulosPrimera_club,
         },
       });
       return updateClub;

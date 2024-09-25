@@ -58,15 +58,23 @@ export class PartidoController {
   };
 
   updatePartido = async (req: Request, res: Response) => {
-    if (!req.query.id_partido || !req.query.fecha_partido) {
+    if (
+      !req.query.id_partido ||
+      !req.query.fecha_partido ||
+      !req.query.idArbitro_partido
+    ) {
       return res.status(400).json({
         error:
-          "Faltan parametros, asegurese de que se esten ingresando todos los datos: id_partido, fecha_partido",
+          "Faltan parametros, asegurese de que se esten ingresando todos los datos: id_partido, fecha_partido, idArbitro_partido",
       });
     }
 
     this.partidoService
-      .updatePartido(+req.query.id_partido, req.query.fecha_partido.toString())
+      .updatePartido(
+        +req.query.id_partido,
+        req.query.fecha_partido.toString(),
+        +req.query.idArbitro_partido
+      )
       .then((msg) => res.status(200).json(msg))
       .catch((error) => this.handleError(error, res));
   };

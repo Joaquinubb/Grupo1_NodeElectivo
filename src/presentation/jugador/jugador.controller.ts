@@ -38,6 +38,9 @@ export class JugadorController {
 
   getJugadoresByClub = async (req: Request, res: Response) => {
     const { nombre } = req.query;
+    if (!nombre) {
+      return res.status(400).json({ error: "Debe ingresar un nombre de club" });
+    }
 
     this.jugadorService
       .getJugadoresByClub(nombre as string)
@@ -82,12 +85,42 @@ export class JugadorController {
       });
     }
 
+    if (
+      typeof req.query.precio_jugador === "string" &&
+      req.query.precio_jugador.trim() === ""
+    ) {
+      return res.status(400).json({ error: "Precio inválido" });
+    }
+
+    if (
+      typeof req.query.estatura_jugador === "string" &&
+      req.query.estatura_jugador.trim() === ""
+    ) {
+      return res.status(400).json({ error: "Estatura inválida" });
+    }
+
+    if (
+      isNaN(Number(req.query.precio_jugador)) ||
+      Number(req.query.precio_jugador) < 0
+    ) {
+      return res.status(400).json({ error: "Precio inválido" });
+    }
+
+    if (
+      isNaN(Number(req.query.estatura_jugador)) ||
+      Number(req.query.estatura_jugador) < 0
+    ) {
+      return res.status(400).json({ error: "Estatura inválida" });
+    }
+
     const data: CreateJugador = {
       nombre_jugador: req.query.nombre_jugador as string,
       apellido_jugador: req.query.apellido_jugador as string,
       nacionalidad_jugador: req.query.nacionalidad_jugador as string,
       fechaNac_jugador: req.query.fechaNac_jugador as string,
-      posicion_jugador: req.query.posicion_jugador as PosicionJugador,
+      posicion_jugador: req.query.posicion_jugador
+        .toString()
+        .toUpperCase() as PosicionJugador,
       estatura_jugador: Number(req.query.estatura_jugador),
       precio_jugador: Number(req.query.precio_jugador),
       club_jugador: req.query.club_jugador as string,
@@ -106,28 +139,40 @@ export class JugadorController {
       return res.status(400).json({ error: "ID inválido" });
     }
 
-    const data: CreateJugador = {
+    if (
+      req.query.precio_jugador &&
+      (isNaN(+req.query.precio_jugador) ||
+        +req.query.precio_jugador < 0 ||
+        (req.query.precio_jugador as string).trim() === "")
+    ) {
+      return res.status(400).json({ error: "Precio inválido" });
+    }
+
+    if (
+      req.query.estatura_jugador &&
+      (isNaN(+req.query.estatura_jugador) ||
+        +req.query.estatura_jugador < 0 ||
+        (req.query.estatura_jugador as string).trim() === "")
+    ) {
+      return res.status(400).json({ error: "Estatura inválida" });
+    }
+
+    const data = {
       nombre_jugador: req.query.nombre_jugador as string,
       apellido_jugador: req.query.apellido_jugador as string,
       nacionalidad_jugador: req.query.nacionalidad_jugador as string,
-      fechaNac_jugador: req.query.fechaNac_jugador
-        ? new Date(req.query.fechaNac_jugador as string).toISOString()
-        : new Date().toISOString(),
+      fechaNac_jugador: req.query.fechaNac_jugador as string,
       precio_jugador: req.query.precio_jugador
-        ? Number(req.query.precio_jugador)
-        : 0,
-      posicion_jugador: req.query.posicion_jugador as PosicionJugador,
+        ? +req.query.precio_jugador
+        : undefined,
+      posicion_jugador: req.query.posicion_jugador
+        ?.toString()
+        .toUpperCase() as PosicionJugador,
       estatura_jugador: req.query.estatura_jugador
-        ? Number(req.query.estatura_jugador)
-        : 0,
+        ? +req.query.estatura_jugador
+        : undefined,
       club_jugador: req.query.club_jugador as string,
     };
-
-    if (data.fechaNac_jugador) {
-      const fechaNac = new Date(data.fechaNac_jugador);
-      fechaNac.setUTCHours(0, 0, 0, 0);
-      data.fechaNac_jugador = fechaNac.toISOString();
-    }
 
     this.jugadorService
       .updateJugadorbyId(id, data)

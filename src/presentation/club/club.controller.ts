@@ -46,13 +46,20 @@ export class ClubController {
       });
     }
 
+    if (
+      typeof req.query.titulosPrimera_club === "string" &&
+      req.query.titulosPrimera_club.trim() === ""
+    ) {
+      return res.status(400).json({ error: "Títulos inválidos" });
+    }
+
     const data: CreateClub = {
       nombre_club: req.query.nombre_club as string,
       ciudad_club: req.query.ciudad_club as string,
       estadio_club: req.query.estadio_club as string,
       escudo_club: req.query.escudo_club as string,
       fechaFund_club: req.query.fechaFund_club as string,
-      titulosPrimera_club: Number(req.query.titulosPrimera_club),
+      titulosPrimera_club: +req.query.titulosPrimera_club,
     };
 
     this.clubService
@@ -63,6 +70,10 @@ export class ClubController {
 
   deleteClubById = async (req: Request, res: Response) => {
     const id = Number(req.query.id);
+
+    if (typeof req.query.id === "string" && req.query.id.trim() === "") {
+      return res.status(400).json({ error: "ID inválido" });
+    }
 
     if (isNaN(id)) {
       return res.status(400).json({ error: "ID inválido" });
@@ -86,9 +97,8 @@ export class ClubController {
       ciudad_club: req.query.ciudad_club as string,
       estadio_club: req.query.estadio_club as string,
       escudo_club: req.query.escudo_club as string,
-      titulosPrimera_club: req.query.titulosPrimera_club
-        ? Number(req.query.titulosPrimera_club)
-        : undefined,
+      fechaFund_club: req.query.fechaFund_club as string,
+      titulosPrimera_club: req.query.titulosPrimera_club,
     };
 
     const updateData = Object.fromEntries(
