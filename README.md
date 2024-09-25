@@ -24,7 +24,7 @@
 
 2.  GET: `localhost:4000/api/clubes` devuelve todos los clubes.
 
-3.  GET: `localhost:4000/api/clubes/club?nombre=` devuelve los detalles de un club.
+3.  GET: `localhost:4000/api/clubes/club` devuelve los detalles de un club.
 
         Ejemplo: `localhost:4000/api/clubes/club?nombre=Ñublense`
 
