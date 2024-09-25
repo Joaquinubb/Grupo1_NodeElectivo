@@ -15,6 +15,9 @@ export class EntrenadorService {
           apellido_entrenador: true,
           club_entrenador: true,
         },
+        orderBy: {
+          apellido_entrenador: "asc",
+        },
       });
 
       const entrenadoresToSend = entrenadores.map((entrenador) => ({
@@ -81,6 +84,9 @@ export class EntrenadorService {
           nacionalidad_entrenador: true,
           fechaNac_entrenador: true,
           club_entrenador: true,
+        },
+        orderBy: {
+          apellido_entrenador: "asc",
         },
       });
 

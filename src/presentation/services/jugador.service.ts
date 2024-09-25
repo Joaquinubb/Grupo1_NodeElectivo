@@ -18,6 +18,9 @@ export class JugadorService {
           apellido_jugador: true,
           clubId: true,
         },
+        orderBy: {
+          apellido_jugador: "asc",
+        },
       });
 
       return jugadores;
@@ -81,6 +84,9 @@ export class JugadorService {
             },
           },
         },
+        orderBy: {
+          apellido_jugador: "asc",
+        },
       });
 
       const jugadoresFiltrados = jugadores.filter((jugador) => {
@@ -130,6 +136,9 @@ export class JugadorService {
               fechaNac_jugador: true,
               posicion_jugador: true,
               nacionalidad_jugador: true,
+            },
+            orderBy: {
+              apellido_jugador: "asc",
             },
           },
         },

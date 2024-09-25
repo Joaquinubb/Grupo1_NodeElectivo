@@ -17,6 +17,9 @@ export class PartidoService {
           club_visitante: true,
           arbitro: true,
         },
+        orderBy: {
+          fecha_partido: "asc",
+        },
       });
 
       const partidosFormateados = partidos.map((partido) => {

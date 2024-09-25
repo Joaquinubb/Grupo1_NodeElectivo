@@ -50,7 +50,7 @@
 
 9.  POST: `localhost:4000/api/jugadores` crea un jugador.
 
-        Ejemplo: `localhost:4000/api/jugadores/?nombre_jugador=Lionel&apellido_jugador=Messi&nacionalidad_jugador=Argentina&fechaNac_jugador=1986-06-24T00:00:00Z&posicion_jugador=delantero&estatura_jugador=170&precio_jugador=0&club_jugador=Palestino`
+        Ejemplo: `localhost:4000/api/jugadores?nombre_jugador=Lionel&apellido_jugador=Messi&nacionalidad_jugador=Argentina&fechaNac_jugador=1986-06-24T00:00:00Z&posicion_jugador=delantero&estatura_jugador=170&precio_jugador=0&club_jugador=Palestino`
 
 10. PUT: `localhost:4000/api/jugadores/update` edita un jugador por su id.
 

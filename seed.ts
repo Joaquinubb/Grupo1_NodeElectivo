@@ -2480,7 +2480,7 @@ async function main() {
     },
     {
       nombre_jugador: "Eduardo",
-      apellido_jugador: "...",
+      apellido_jugador: "Bauermann",
       nacionalidad_jugador: "Brasil",
       fechaNac_jugador: new Date("1996-02-13T00:00:00Z"),
       precio_jugador: 0,
@@ -4410,7 +4410,7 @@ async function main() {
     },
     {
       nombre_jugador: "Jader",
-      apellido_jugador: " ",
+      apellido_jugador: "Gentil",
       nacionalidad_jugador: "Brasil",
       fechaNac_jugador: new Date("2003-07-24T00:00:00Z"),
       precio_jugador: 0,

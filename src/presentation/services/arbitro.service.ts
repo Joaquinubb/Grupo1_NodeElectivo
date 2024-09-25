@@ -8,7 +8,11 @@ export class ArbitroService {
 
   async getArbitros() {
     try {
-      const arbitros = await prisma.arbitro.findMany({});
+      const arbitros = await prisma.arbitro.findMany({
+        orderBy: {
+          apellido_arbitro: "asc",
+        },
+      });
       const arbitrosConEdad = arbitros.map((arbitro) => ({
         ...arbitro,
         fechaNac_arbitro: new Date(arbitro.fechaNac_arbitro)
