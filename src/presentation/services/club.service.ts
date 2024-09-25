@@ -1,4 +1,5 @@
 import { normalizeString } from "../../config/normalize";
+import { ValidDate } from "../../config/valid-date";
 import { prisma } from "../../data/postgres";
 import { CreateClub } from "../../domain/entities/club.entity";
 import { CustomError } from "../../domain/errors/custom.error";
@@ -21,7 +22,7 @@ export class ClubService {
 
       return clubes;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -72,7 +73,7 @@ export class ClubService {
 
       return clubToSend;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -96,6 +97,10 @@ export class ClubService {
         );
       }
 
+      if (!ValidDate(data.fechaFund_club)) {
+        throw CustomError.badRequest("Fecha inválida");
+      }
+
       const fechaFund = new Date(data.fechaFund_club);
       fechaFund.setUTCHours(0, 0, 0, 0);
       const fechaFundISO = fechaFund.toISOString();
@@ -109,10 +114,7 @@ export class ClubService {
 
       return club;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw error;
-      }
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -136,6 +138,12 @@ export class ClubService {
       await prisma.entrenador.updateMany({
         where: { clubId: id },
         data: { clubId: undefined },
+      });
+
+      await prisma.partido.deleteMany({
+        where: {
+          OR: [{ idLocal_partido: id }, { idVisita_partido: id }],
+        },
       });
 
       // Ahora eliminar el club
@@ -179,10 +187,7 @@ export class ClubService {
       });
       return updateClub;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw error;
-      }
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 }

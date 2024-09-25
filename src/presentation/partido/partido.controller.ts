@@ -45,7 +45,7 @@ export class PartidoController {
     }
 
     const data: CreatePartido = {
-      fecha_partido: req.query.fecha_partido as string,
+      fecha_partido: req.query.fecha_partido.toString(),
       idLocal_partido: +req.query.idLocal_partido,
       idVisita_partido: +req.query.idVisita_partido,
       idArbitro_partido: +req.query.idArbitro_partido,
@@ -54,6 +54,20 @@ export class PartidoController {
     this.partidoService
       .createPartido(data)
       .then((msg) => res.status(201).json(msg))
+      .catch((error) => this.handleError(error, res));
+  };
+
+  updatePartido = async (req: Request, res: Response) => {
+    if (!req.query.id_partido || !req.query.fecha_partido) {
+      return res.status(400).json({
+        error:
+          "Faltan parametros, asegurese de que se esten ingresando todos los datos: id_partido, fecha_partido",
+      });
+    }
+
+    this.partidoService
+      .updatePartido(+req.query.id_partido, req.query.fecha_partido.toString())
+      .then((msg) => res.status(200).json(msg))
       .catch((error) => this.handleError(error, res));
   };
 }

@@ -3,6 +3,7 @@ import { prisma } from "../../data/postgres";
 import { calculateAge } from "../../config/age";
 import { CreateJugador } from "../../domain/entities/jugador.entity";
 import { normalizeString } from "../../config/normalize";
+import { ValidDate } from "../../config/valid-date";
 
 export class JugadorService {
   constructor() {}
@@ -20,7 +21,7 @@ export class JugadorService {
 
       return jugadores;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -56,7 +57,7 @@ export class JugadorService {
         club_jugador: jugador?.club_jugador?.nombre_club,
       };
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -105,7 +106,7 @@ export class JugadorService {
 
       return jugadoresModificados;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -149,12 +150,15 @@ export class JugadorService {
         jugadores: jugadoresConEdad,
       };
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
   async createJugador(data: CreateJugador) {
     try {
+      if (!ValidDate(data.fechaNac_jugador)) {
+        throw CustomError.badRequest("Fecha inválida");
+      }
       const fechaNac = new Date(data.fechaNac_jugador);
       fechaNac.setUTCHours(0, 0, 0, 0);
       const fechaNacISO = fechaNac.toISOString();
@@ -181,9 +185,7 @@ export class JugadorService {
 
       return jugador;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw error;
-      }
+      throw error;
     }
   }
 
@@ -205,7 +207,7 @@ export class JugadorService {
 
       return jugador;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -222,6 +224,10 @@ export class JugadorService {
         clubId = club.id_club;
       }
 
+      if (!ValidDate(data.fechaNac_jugador)) {
+        throw CustomError.badRequest("Fecha inválida");
+      }
+
       const updateJugador = await prisma.jugador.update({
         where: { id_jugador: id },
         data: {
@@ -232,14 +238,13 @@ export class JugadorService {
           precio_jugador: data.precio_jugador,
           posicion_jugador: data.posicion_jugador,
           estatura_jugador: data.estatura_jugador,
-          ...(clubId !== undefined && { clubId: clubId })
+          ...(clubId !== undefined && { clubId: clubId }),
         },
       });
 
       return updateJugador;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
-
 }

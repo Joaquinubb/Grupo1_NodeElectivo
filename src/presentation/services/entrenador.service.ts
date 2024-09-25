@@ -24,7 +24,7 @@ export class EntrenadorService {
 
       return entrenadoresToSend;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -59,7 +59,7 @@ export class EntrenadorService {
 
       return entrenadorToSend;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -109,7 +109,7 @@ export class EntrenadorService {
 
       return entrenadoresModificados;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 }

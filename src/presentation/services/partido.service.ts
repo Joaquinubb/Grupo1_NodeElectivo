@@ -2,6 +2,7 @@ import { CustomError } from "../../domain/errors/custom.error";
 import { formatDate } from "../../config/format-date";
 import { prisma } from "../../data/postgres";
 import { CreatePartido } from "../../domain/entities/partido.entity";
+import { ValidDate } from "../../config/valid-date";
 
 export class PartidoService {
   constructor() {}
@@ -21,7 +22,7 @@ export class PartidoService {
       const partidosFormateados = partidos.map((partido) => {
         return {
           ...partido,
-          fecha_partido: formatDate(new Date(partido.fecha_partido)),
+          fecha_partido: formatDate(partido.fecha_partido),
           club_local: partido.club_local?.nombre_club,
           club_visitante: partido.club_visitante?.nombre_club,
           estadio: partido.club_local?.estadio_club,
@@ -34,7 +35,7 @@ export class PartidoService {
 
       return partidosFormateados;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -59,7 +60,7 @@ export class PartidoService {
 
       return msg;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
     }
   }
 
@@ -81,6 +82,10 @@ export class PartidoService {
         throw CustomError.badRequest("Faltan datos del partido");
       }
 
+      if (!ValidDate(fecha_partido)) {
+        throw CustomError.badRequest("Fecha inválida");
+      }
+
       const partido = await prisma.partido.create({
         data: {
           fecha_partido,
@@ -94,7 +99,38 @@ export class PartidoService {
 
       return msg;
     } catch (error) {
-      throw CustomError.internalServer(`${error}`);
+      throw error;
+    }
+  }
+
+  async updatePartido(id_partido: number, fecha_partido: string) {
+    try {
+      if (!id_partido) throw CustomError.badRequest("Falta el id del partido");
+
+      const partidoExist = await prisma.partido.findUnique({
+        where: {
+          id_partido,
+        },
+      });
+
+      if (fecha_partido && !ValidDate(fecha_partido)) {
+        throw CustomError.badRequest("Fecha inválida");
+      }
+
+      if (!partidoExist) throw CustomError.notFound("Partido no encontrado");
+
+      const partido = await prisma.partido.update({
+        where: {
+          id_partido,
+        },
+        data: {
+          fecha_partido: fecha_partido,
+        },
+      });
+
+      return partido;
+    } catch (error) {
+      throw error;
     }
   }
 }

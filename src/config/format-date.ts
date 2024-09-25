@@ -1,4 +1,10 @@
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+
 export function formatDate(date: Date): string {
+  const adjustedDate = new Date(date);
+  adjustedDate.setHours(adjustedDate.getHours() + 3); // Sumar 4 horas para ajustar la diferencia horaria
+
   const options: any = {
     weekday: "long",
     day: "numeric",
@@ -6,7 +12,8 @@ export function formatDate(date: Date): string {
     year: "numeric",
     hour: "numeric",
     minute: "numeric",
+    timeZone: "America/Santiago",
   };
 
-  return date.toLocaleString("es-ES", options);
+  return format(adjustedDate, "PPPPpp", { locale: es });
 }

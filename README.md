@@ -61,3 +61,29 @@
 13. GET: `localhost:3000/api/entrenadores/entrenador?apellido=` devuelve los detalles de un entrenador por apellido
 
     Ejemplo: `localhost:3000/api/entrenadores/entrenador?apellido=Almirón`
+
+14. GET: `localhost:3000/api/partidos/` devuelve los partidos
+
+15. POST: `localhost:3000/api/partidos?` crea un partido
+
+    Ejemplo: `localhost:3000/api/partidos?fecha_partido=2024-09-26T14:00:00Z&idLocal_partido=1&idVisita_partido=2&idArbitro_partido=4`
+
+16. DELETE: `localhost:3000/api/partidos` elimina un partido
+
+    Ejemplo: `localhost:3000/api/partidos?id_partido=5`
+
+17. PUT: `localhost:3000/api/partidos` edita un partido
+
+    Ejemplo: `localhost:3000/api/partidos?id_partido=16&fecha_partido=2024-09-26T16:00:00Z`
+
+18. POST: `localhost:3000/api/arbitros` crea un arbitro
+
+    Ejemplo: `localhost:3000/api/arbitros?nombre_arbitro=mauro&apellido_arbitro=san&fechaNac_arbitro=2001-10-10T00:00:00Z`
+
+19. DELETE: `localhost:3000/api/arbitros` elimina un arbitro
+
+    Ejemplo: `localhost:3000/api/arbitros/47`
+
+20. PUT: `localhost:3000/api/arbitros` edita un arbitro
+
+    Ejemplo: `localhost:3000/api/arbitros/47?nombre_arbitro=mauro&apellido_arbitro=sanjuan&fechaNac_arbitro=2001-10-10T00:00:00Z`

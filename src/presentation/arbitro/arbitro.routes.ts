@@ -14,6 +14,7 @@ export class ArbitroRoutes {
     router.get("/:id", arbitroController.getArbitroById);
     router.delete("/:id", arbitroController.deleteArbitroById);
     router.post("/", arbitroController.createArbitro);
+    router.put("/:id", arbitroController.updateArbitro);
 
     return router;
   }
