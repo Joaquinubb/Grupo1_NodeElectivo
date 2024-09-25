@@ -266,7 +266,7 @@ async function main() {
     {
       nombre_club: "Colo Colo",
       ciudad_club: "Macul",
-      estadio_club: "Monumental, David Arellano",
+      estadio_club: "Monumental David Arellano",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/04331fe9ff4e3caecd72877a6e9669dd.png",
       fechaFund_club: new Date("1979-04-19T00:00:00Z"),
@@ -284,7 +284,7 @@ async function main() {
     {
       nombre_club: "Deportes Copiapó",
       ciudad_club: "Copiapó",
-      estadio_club: "Luis Valenzuela Hermosilla",
+      estadio_club: "Municipal Luis Valenzuela Hermosilla",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/6004aae86c052ca976eca2421f877304.png",
       fechaFund_club: new Date("1999-03-09T00:00:00Z"),
@@ -311,7 +311,7 @@ async function main() {
     {
       nombre_club: "Universidad de Chile",
       ciudad_club: "Santiago",
-      estadio_club: "Nacional",
+      estadio_club: "Nacional Julio Martínez Prádanos",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/7fbceadc67d0639139019329cede98d7.png",
       fechaFund_club: new Date("1927-05-24T00:00:00Z"),
