@@ -238,7 +238,7 @@ async function main() {
   const clubes = [
     {
       nombre_club: "Audax Italiano",
-      ciudad_club: "La Florida, Santiago",
+      ciudad_club: "La Florida",
       estadio_club: "Bicentenario de la Florida",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes//0761d723a884d13d188a777e009b5fab.png",
@@ -256,7 +256,7 @@ async function main() {
     },
     {
       nombre_club: "Cobresal",
-      ciudad_club: "El Salvador, Atacama",
+      ciudad_club: "El Salvador",
       estadio_club: "El Cobre",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/831340ccfeb595f722e7ae6009c5f7d7.png",
@@ -265,7 +265,7 @@ async function main() {
     },
     {
       nombre_club: "Colo Colo",
-      ciudad_club: "Santiago, Santiago",
+      ciudad_club: "Macul",
       estadio_club: "Monumental, David Arellano",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/04331fe9ff4e3caecd72877a6e9669dd.png",
@@ -283,7 +283,7 @@ async function main() {
     },
     {
       nombre_club: "Deportes Copiapó",
-      ciudad_club: "Copiapó, Atacama",
+      ciudad_club: "Copiapó",
       estadio_club: "Luis Valenzuela Hermosilla",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/6004aae86c052ca976eca2421f877304.png",
@@ -301,7 +301,7 @@ async function main() {
     },
     {
       nombre_club: "Everton",
-      ciudad_club: "Viña del Mar, Valparaíso",
+      ciudad_club: "Viña del Mar",
       estadio_club: "Sausalito",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes//97702ca6993f502b3478d7608963d392.png",
@@ -319,7 +319,7 @@ async function main() {
     },
     {
       nombre_club: "Unión Española",
-      ciudad_club: "Santiago",
+      ciudad_club: "Independencia",
       estadio_club: "Santa Laura",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes//a6e9009b32c6c2e399604e0c3841534b.png",
@@ -328,7 +328,7 @@ async function main() {
     },
     {
       nombre_club: "Universidad Católica",
-      ciudad_club: "Santiago",
+      ciudad_club: "Las Condes",
       estadio_club: "San Carlos de Apoquindo",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/d01105ee6df81f19d3d25c2736c7d6ae.png",
@@ -337,7 +337,7 @@ async function main() {
     },
     {
       nombre_club: "Palestino",
-      ciudad_club: "La Cisterna, Santiago",
+      ciudad_club: "La Cisterna",
       estadio_club: "Municipal de La Cisterna",
       escudo_club:
         "https://anfpfotos.cl/size/60x60/a/clubes/0af91335f25af3f423d2a802717b7a74.png",
