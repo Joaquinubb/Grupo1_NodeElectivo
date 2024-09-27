@@ -14,6 +14,7 @@ export class PartidoRoutes {
     router.delete("/", partidoController.deletePartido);
     router.post("/", partidoController.createPartido);
     router.put("/", partidoController.updatePartido);
+    router.get("/:id", partidoController.getPartidoById);
 
     return router;
   }

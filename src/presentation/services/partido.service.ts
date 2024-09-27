@@ -199,4 +199,25 @@ export class PartidoService {
       throw error;
     }
   }
+
+  async getPartidoById(id_partido: number) {
+    try {
+      const partido = await prisma.partido.findUnique({
+        where: {
+          id_partido,
+        },
+      });
+
+      if (!partido) throw CustomError.notFound("Partido no encontrado");
+
+      const partidoFormateado = {
+        ...partido,
+        fecha_partido: partido.fecha_partido.toISOString().slice(0, 16),
+      };
+
+      return partidoFormateado;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

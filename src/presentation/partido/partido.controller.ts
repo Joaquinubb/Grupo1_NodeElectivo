@@ -78,4 +78,13 @@ export class PartidoController {
       .then((msg) => res.status(200).json(msg))
       .catch((error) => this.handleError(error, res));
   };
+
+  getPartidoById = async (req: Request, res: Response) => {
+    const id_partido = req.params.id;
+
+    this.partidoService
+      .getPartidoById(+id_partido!)
+      .then((partido) => res.status(200).json(partido))
+      .catch((error) => this.handleError(error, res));
+  };
 }
