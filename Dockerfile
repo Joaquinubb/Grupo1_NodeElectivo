@@ -13,6 +13,9 @@ RUN npm install
 # Copia el resto del código de la aplicación
 COPY . .
 
+# Genera el cliente de Prisma
+RUN npx prisma generate
+
 # Compila el proyecto TypeScript
 RUN npm run build
 
@@ -20,4 +23,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Define el comando para iniciar la aplicación
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/seed.js && npm start"]
+CMD ["sh", "-c", "npm start"]
