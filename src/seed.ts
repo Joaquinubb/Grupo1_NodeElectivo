@@ -1,4 +1,4 @@
-import { prisma } from "./src/data/postgres";
+import { prisma } from "./data/postgres";
 import { PosicionJugador } from "@prisma/client";
 
 async function main() {

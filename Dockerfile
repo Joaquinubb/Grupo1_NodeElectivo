@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Define el comando para iniciar la aplicación
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/seed.js && npm start"]
