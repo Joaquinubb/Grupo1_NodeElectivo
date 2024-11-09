@@ -10,7 +10,7 @@ export class AppRoutes {
     const router = Router();
 
     router.get("/", (req, res) => {
-      res.send("Hola mundo");
+      res.send("API Chilean Premier League 2024");
     }); //Solo para probar que el servidor esta corriendo
 
     router.use("/api/arbitros", ArbitroRoutes.routes);

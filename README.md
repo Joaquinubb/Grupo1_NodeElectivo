@@ -1,4 +1,4 @@
-# Chilean Premier League - Proyecto Grupo 1 - Node
+# Chilean Premier League 2024 - Proyecto Grupo 1 - Node
 
 ## Preparación Inicial
 
