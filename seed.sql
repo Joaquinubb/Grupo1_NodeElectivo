@@ -67,23 +67,23 @@ CREATE TABLE IF NOT EXISTS "public"."Club" (
 );
 
 INSERT INTO "public"."Club" ("nombre_club", "ciudad_club", "estadio_club", "escudo_club", "fechaFund_club", "titulosPrimera_club") VALUES
-('Audax Italiano', 'La Florida, Santiago', 'Bicentenario de la Florida', 'https://anfpfotos.cl/size/60x60/a/clubes//0761d723a884d13d188a777e009b5fab.png', '1910-11-30 00:00:00', 4);
+('Audax Italiano', 'La Florida', 'Bicentenario de la Florida', 'https://anfpfotos.cl/size/60x60/a/clubes//0761d723a884d13d188a777e009b5fab.png', '1910-11-30 00:00:00', 4);
 INSERT INTO "public"."Club" ("nombre_club", "ciudad_club", "estadio_club", "escudo_club", "fechaFund_club", "titulosPrimera_club") VALUES
 ('Cobreloa', 'Calama', 'Zorros del Desierto', 'https://anfpfotos.cl/size/60x60/a/clubes//1a0ab0b4105e83d27eb9e1808f82f040.png', '1977-01-07 00:00:00', 8);
 INSERT INTO "public"."Club" ("nombre_club", "ciudad_club", "estadio_club", "escudo_club", "fechaFund_club", "titulosPrimera_club") VALUES
-('Cobresal', 'El Salvador, Atacama', 'El Cobre', 'https://anfpfotos.cl/size/60x60/a/clubes/831340ccfeb595f722e7ae6009c5f7d7.png', '1979-05-05 00:00:00', 1);
+('Cobresal', 'El Salvador', 'El Cobre', 'https://anfpfotos.cl/size/60x60/a/clubes/831340ccfeb595f722e7ae6009c5f7d7.png', '1979-05-05 00:00:00', 1);
 INSERT INTO "public"."Club" ("nombre_club", "ciudad_club", "estadio_club", "escudo_club", "fechaFund_club", "titulosPrimera_club") VALUES
-('Colo Colo', 'Santiago, Santiago', 'Monumental, David Arellano', 'https://anfpfotos.cl/size/60x60/a/clubes/04331fe9ff4e3caecd72877a6e9669dd.png', '1979-04-19 00:00:00', 33),
+('Colo Colo', 'Macul', 'Monumental David Arellano', 'https://anfpfotos.cl/size/60x60/a/clubes/04331fe9ff4e3caecd72877a6e9669dd.png', '1979-04-19 00:00:00', 33),
 ('Coquimbo Unido', 'Coquimbo', 'Municipal Francisco Sánchez Rumoroso', 'https://anfpfotos.cl/size/60x60/a/clubes//c016a84a402cb6399df331159734488f.png', '1958-08-30 00:00:00', 0),
-('Deportes Copiapó', 'Copiapó, Atacama', 'Luis Valenzuela Hermosilla', 'https://anfpfotos.cl/size/60x60/a/clubes/6004aae86c052ca976eca2421f877304.png', '1999-03-09 00:00:00', 0),
+('Deportes Copiapó', 'Copiapó', 'Municipal Luis Valenzuela Hermosilla', 'https://anfpfotos.cl/size/60x60/a/clubes/6004aae86c052ca976eca2421f877304.png', '1999-03-09 00:00:00', 0),
 ('Deportes Iquique', 'Iquique', 'Tierra de Campeones', 'https://anfpfotos.cl/size/60x60/a/clubes/b3c4cf4f53d5078ec3e37b40135784ca.png', '1999-05-21 00:00:00', 0),
-('Everton', 'Viña del Mar, Valparaíso', 'Sausalito', 'https://anfpfotos.cl/size/60x60/a/clubes//97702ca6993f502b3478d7608963d392.png', '1999-06-24 00:00:00', 4),
-('Universidad de Chile', 'Santiago', 'Nacional', 'https://anfpfotos.cl/size/60x60/a/clubes/7fbceadc67d0639139019329cede98d7.png', '1927-05-24 00:00:00', 18),
-('Unión Española', 'Santiago', 'Santa Laura', 'https://anfpfotos.cl/size/60x60/a/clubes//a6e9009b32c6c2e399604e0c3841534b.png', '1897-05-18 00:00:00', 7),
-('Universidad Católica', 'Santiago', 'San Carlos de Apoquindo', 'https://anfpfotos.cl/size/60x60/a/clubes/d01105ee6df81f19d3d25c2736c7d6ae.png', '1937-04-21 00:00:00', 16),
-('Palestino', 'La Cisterna, Santiago', 'Municipal de La Cisterna', 'https://anfpfotos.cl/size/60x60/a/clubes/0af91335f25af3f423d2a802717b7a74.png', '1920-08-20 00:00:00', 2),
+('Everton', 'Viña del Mar', 'Sausalito', 'https://anfpfotos.cl/size/60x60/a/clubes//97702ca6993f502b3478d7608963d392.png', '1999-06-24 00:00:00', 4),
+('Universidad de Chile', 'Santiago', 'Nacional Julio Martínez Prádanos', 'https://anfpfotos.cl/size/60x60/a/clubes/7fbceadc67d0639139019329cede98d7.png', '1927-05-24 00:00:00', 18),
+('Unión Española', 'Independencia', 'Santa Laura - Universidad SEK', 'https://anfpfotos.cl/size/60x60/a/clubes//a6e9009b32c6c2e399604e0c3841534b.png', '1897-05-18 00:00:00', 7),
+('Universidad Católica', 'Las Condes', 'San Carlos de Apoquindo', 'https://anfpfotos.cl/size/60x60/a/clubes/d01105ee6df81f19d3d25c2736c7d6ae.png', '1937-04-21 00:00:00', 16),
+('Palestino', 'La Cisterna', 'Municipal de La Cisterna', 'https://anfpfotos.cl/size/60x60/a/clubes/0af91335f25af3f423d2a802717b7a74.png', '1920-08-20 00:00:00', 2),
 ('OHiggins', 'Rancagua', 'El Teniente', 'https://anfpfotos.cl/size/60x60/a/clubes//9c27509ed8b5acfedfea1cecbe0014d3.PNG', '1955-04-07 00:00:00', 1),
-('Ñublense', 'Chillán', 'Municipal Nelson Oyarzún', 'https://anfpfotos.cl/size/60x60/a/clubes/378cbcced037ab297f3809a87567f5e0.png', '1916-08-20 00:00:00', 0),
+('Ñublense', 'Chillán', 'Municipal Nelson Oyarzún Arenas', 'https://anfpfotos.cl/size/60x60/a/clubes/378cbcced037ab297f3809a87567f5e0.png', '1916-08-20 00:00:00', 0),
 ('Unión La Calera', 'La Calera', 'Municipal Nicolás Chahuán Nazar', 'https://anfpfotos.cl/size/60x60/a/clubes/90123d347a2b296c2988e6aeeab06056.png', '1954-01-26 00:00:00', 0),
 ('Huachipato', 'Talcahuano', 'Huachipato-CAP Acero', 'https://anfpfotos.cl/size/60x60/a/clubes//b93bf99aee062db5b3f7e71b8311387c.png', '1947-06-07 00:00:00', 3);
 
