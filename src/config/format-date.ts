@@ -3,7 +3,6 @@ import { es } from "date-fns/locale";
 
 export function formatDate(date: Date): string {
   const adjustedDate = new Date(date);
-  adjustedDate.setHours(adjustedDate.getHours() + 3); // Sumar 4 horas para ajustar la diferencia horaria
 
   const options: any = {
     weekday: "long",
